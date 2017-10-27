@@ -1,23 +1,24 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({ 
-    cardInfo: {
+    cardItem: {
         height:200,
-        width: 120,
+        width: 110,
         backgroundColor: 'white',
         flexDirection: 'column',
-        marginRight: 10,
+        marginRight: 5,
+        marginLeft: 5,
         borderRadius: 3
     },
     cardImage: {
-        height: 100,
-        width: 100,
+        height: 150,
+        width: 110,
         borderTopLeftRadius: 3,
         borderBottomLeftRadius: 3
     },
     cardInfo: {
         color: 'black',
-        fontSize: 13,
+        fontSize: 12,
         fontWeight: '500',
         textAlign: 'center',
         paddingHorizontal: 1

@@ -39,13 +39,13 @@ export default class Movies extends Component {
     }
     return (
       <ListView contentContainerStyle={{
-          paddingTop: 20,
-          margin: 10,
+          paddingTop: 30,
+          margin: 5,
           flexDirection: 'row',
           flexWrap: 'wrap'
         }}
         dataSource={this.state.dataSource}
-        renderRow={ (rowData) => <CardView info = {rowData.name} /> }
+        renderRow={ (rowData) => <CardView info = {rowData} /> }
       />
     );
   }
