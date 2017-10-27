@@ -15,7 +15,7 @@ class CardView extends Component {
                 <Image source={require('../../../images/coffee.png')} style={styles.cardImage} />
                 <View style={styles.cardInfo}>
                     <Text style={styles.cardTitle} numberOfLines={2}>
-                        {info.title}
+                        {info}
                     </Text>
                 </View>
             </View>

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { ActivityIndicator, ListView, ScrollView, Text, View } from 'react-native';
+import axios from 'axios';
 
 import CardView from './src/modules/Components/CardView';
+import { MY_API_URL } from './src/constants/api'
 
 export default class Movies extends Component {
   constructor(props) {
@@ -10,21 +12,21 @@ export default class Movies extends Component {
   }
 
   componentDidMount() {
-    return fetch('https://facebook.github.io/react-native/movies.json')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.setState({
-          isLoading: false,
-          dataSource: ds.cloneWithRows(responseJson.movies),
-          //dataSource: responseJson.movies,
-        }, function() { 
-          // do something with new state
-        });
-      })
-      .catch((error) => {
-        console.error(error);
+    return axios.get(`${MY_API_URL}`, {
+      params: {
+        fromDateEpoch: 0
+      }
+    })
+    .then(res => {
+      let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+      this.setState({
+        isLoading: false,
+        dataSource: ds.cloneWithRows(res.data),
       });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
   render() {
@@ -36,27 +38,15 @@ export default class Movies extends Component {
       );
     }
     return (
-      <ListView style={{flex: 1, paddingTop: 20}}
+      <ListView contentContainerStyle={{
+          paddingTop: 20,
+          margin: 10,
+          flexDirection: 'row',
+          flexWrap: 'wrap'
+        }}
         dataSource={this.state.dataSource}
-        renderRow={ (rowData) => <CardView info = {rowData} /> }
+        renderRow={ (rowData) => <CardView info = {rowData.name} /> }
       />
-    );
-  }
-
-  _renderRow() {
-    return (
-      <View style={
-          {
-            justifyContent: 'center',
-            alignItems: 'center',
-          }
-        }>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {this.state.dataSource.map(rowData => (
-            <CardView info={rowData} />
-          ))}
-        </ScrollView>
-      </View>
     );
   }
 }
