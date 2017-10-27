@@ -11,14 +11,16 @@ class CardView extends Component {
     render() {
         const { info } = this.props;
         return (
-            <View style={styles.cardItem}>
-                <Image source={require('../../../images/coffee.png')} style={styles.cardImage} />
-                <View style={styles.cardInfo}>
-                    <Text style={styles.cardTitle} numberOfLines={3}>
-                        {info.name}
-                    </Text>
+            <TouchableOpacity activeOpacity={0.7}>
+                <View style={styles.cardItem}>
+                    <Image source={require('../../../images/coffee.png')} style={styles.cardImage} />
+                    <View style={styles.cardInfo}>
+                        <Text style={styles.cardTitle} numberOfLines={3}>
+                            {info.name}
+                        </Text>
+                    </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
     }
 }
