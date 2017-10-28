@@ -1,32 +1,43 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ListView, ScrollView, Text, View } from 'react-native';
-import axios from 'axios';
+import { 
+  ActivityIndicator, 
+  ListView, 
+  Text, 
+  View 
+} from 'react-native';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import * as itemsActions from './src/modules/items.actions';
 import CardView from './src/modules/Components/CardView';
-import { MY_API_URL } from './src/constants/api'
 
-export default class Movies extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { isLoading: true }
+    this.state = { 
+        isLoading: true,
+        companies: {
+            results: []
+        }
+    }
   }
 
   componentDidMount() {
-    return axios.get(`${MY_API_URL}`, {
-      params: {
-        fromDateEpoch: 0
-      }
-    })
-    .then(res => {
-      let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-      this.setState({
-        isLoading: false,
-        dataSource: ds.cloneWithRows(res.data),
+    this._retrieveItems();
+  }
+
+  _retrieveItems() {
+    this.props.actions.retrieveItems()
+      .then(() => {
+          const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+          const dataSource = ds.cloneWithRows(this.props.companies.results);
+          this.setState({
+              companies: this.props.companies,
+              dataSource,
+              isLoading: false
+          });
       });
-    })
-    .catch((error) => {
-      console.error(error);
-    });
   }
 
   render() {
@@ -50,3 +61,22 @@ export default class Movies extends Component {
     );
   }
 }
+
+MyItems.propTypes = {
+  actions: propTypes.object.isRequired,
+  companies: propTypes.object.isRequired
+}
+
+function mapStateToProps(state, ownProps) {
+  return {
+      companies: state.items.companies
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+      actions: bindActionCreators(itemsActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
