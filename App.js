@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { 
   ActivityIndicator, 
   ListView, 
   Text, 
-  View 
+  View,
+  RefreshControl
 } from 'react-native';
 
 import { bindActionCreators } from 'redux';
@@ -15,29 +17,36 @@ import CardView from './src/modules/Components/CardView';
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = { 
         isLoading: true,
-        companies: {
-            results: []
-        }
-    }
+        refreshing: false
+    };
+
+    this._onRefresh = this._onRefresh.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this._retrieveItems();
   }
 
-  _retrieveItems() {
+  _retrieveItems(isRefreshed) {
     this.props.actions.retrieveItems()
       .then(() => {
-          const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-          const dataSource = ds.cloneWithRows(this.props.companies.results);
-          this.setState({
-              companies: this.props.companies,
-              dataSource,
-              isLoading: false
-          });
+        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.setState({
+            dataSource: ds.cloneWithRows(this.props.companies),
+            isLoading: false
+        });
+      }).catch(err => {
+        console.log('retrieve items: Error:', err);
       });
+    if (isRefreshed && this.setState({ refreshing: false }));
+  }
+
+  _onRefresh() {
+    this.setState({ refreshing: true });
+    this._retrieveItems('isRefreshed');
   }
 
   render() {
@@ -55,17 +64,25 @@ class App extends Component {
           flexDirection: 'row',
           flexWrap: 'wrap'
         }}
+        enableEmptySections
         dataSource={this.state.dataSource}
-        renderRow={ (rowData) => <CardView info = {rowData} /> }
+        renderRow={rowData => <CardView info = {rowData} /> }
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+            title="loading..."
+          />
+        }
       />
     );
   }
 }
 
-MyItems.propTypes = {
-  actions: propTypes.object.isRequired,
-  companies: propTypes.object.isRequired
-}
+App.propTypes = {
+  actions: PropTypes.object.isRequired,
+  companies: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
+};
 
 function mapStateToProps(state, ownProps) {
   return {

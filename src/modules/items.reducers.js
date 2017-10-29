@@ -6,7 +6,7 @@ export default function (state = initialState.items, action) {
         case types.RETRIEVE_ITEMS_SUCCESS:
             return {
                 ...state,
-                items: action.items
+                companies: action.companies
             };
         default:
             return state;

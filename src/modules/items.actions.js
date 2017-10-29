@@ -1,11 +1,11 @@
 import axios from 'axios';
 import * as types from '../constants/actionTypes';
-import { MY_API_URL } from './src/constants/api'
+import { MY_API_URL } from '../constants/api';
 
 export function retrieveItemsSuccess(res) {
     return {
         type: types.RETRIEVE_ITEMS_SUCCESS,
-        items: res.data
+        companies: res.data
     };
 }
 
@@ -22,5 +22,5 @@ export function retrieveItems() {
           .catch((error) => {
             console.error(error);
           });
-    }
+    };
 }

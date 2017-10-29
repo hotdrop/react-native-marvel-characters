@@ -1,18 +1,16 @@
-import { AppRegistry, View } from 'react-native';
-import App from './App';
-import configureStore from './src/store/configureStore'
+import React from 'react'
+import { AppRegistry } from 'react-native';
+
 import { Provider } from 'react-redux';
+import configureStore from './src/store/configureStore';
+import App from './App';
 
-const store = createStore()
+const store = configureStore();
 
-const MyApp = React.createClass({
-  render: function() {
-    return(
+const MyApp = () => (
       <Provider store={store}>
-       {() => <App />}
+        <App />
       </Provider>
-    );
-  }
-});
-
+    )
+  
 AppRegistry.registerComponent('StudyProject', () => MyApp);
