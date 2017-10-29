@@ -11,10 +11,10 @@ import {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as itemsActions from './src/modules/items.actions';
-import CardView from './src/modules/Components/CardView';
+import * as itemsActions from './items.actions';
+import CardView from './Components/CardView';
 
-class App extends Component {
+class Companies extends Component {
   constructor(props) {
     super(props);
 
@@ -24,6 +24,7 @@ class App extends Component {
     };
 
     this._onRefresh = this._onRefresh.bind(this);
+    this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
   }
 
   componentWillMount() {
@@ -48,6 +49,14 @@ class App extends Component {
     this.setState({ refreshing: true });
     this._retrieveItems('isRefreshed');
   }
+
+  _onNavigatorEvent(event) {
+		if (event.type === 'NavBarButtonPress') {
+			if (event.id === 'close') {
+				this.props.navigator.dismissModal();
+			}
+		}
+	}
 
   render() {
     if(this.state.isLoading) {
@@ -79,7 +88,7 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
+Companies.propTypes = {
   actions: PropTypes.object.isRequired,
   companies: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 };
@@ -96,4 +105,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Companies);
