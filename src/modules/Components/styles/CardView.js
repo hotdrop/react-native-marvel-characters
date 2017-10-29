@@ -17,11 +17,12 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 3
     },
     cardInfo: {
+        paddingHorizontal: 1
+    },
+    cardText: {
         color: 'black',
         fontSize: 12,
         fontWeight: '500',
-        textAlign: 'center',
-        paddingHorizontal: 1
     }
 });
 
