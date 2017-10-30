@@ -10,19 +10,15 @@ const store = configureStore();
 registerScreens(store, Provider);
 
 const navigatorStyle = {
-	statusBarColor: 'black',
-	statusBarTextColorScheme: 'light',
-	navigationBarColor: 'black',
-	navBarBackgroundColor: '#0a0a0a',
+	navBarTranslucent: true,
+	drawUnderTabBar: true,
+	navBarBackgroundColor: 'black',
 	navBarTextColor: 'white',
-	navBarButtonColor: 'white',
-	tabBarButtonColor: 'red',
-	tabBarSelectedButtonColor: 'red',
-	tabBarBackgroundColor: 'white',
+	statusBarTextColorScheme: 'light',
+	navigationBarColor: 'black',	
 	topBarElevationShadowEnabled: false,
 	navBarHideOnScroll: true,
-	tabBarHidden: true,
-	drawUnderTabBar: true
+	tabBarHidden: true
 };
 
 Navigation.startSingleScreenApp({

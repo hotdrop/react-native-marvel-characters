@@ -24,6 +24,7 @@ public class MainApplication extends NavigationApplication {
 
   protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
+        new VectorIconsPackage(),
         new ReactNativeConfigPackage()
       );
   }
@@ -43,7 +44,7 @@ public class MainApplication extends NavigationApplication {
   //   protected List<ReactPackage> getPackages() {
   //     return Arrays.<ReactPackage>asList(
   //         new MainReactPackage(),
-            new VectorIconsPackage(),
+  //           new VectorIconsPackage(),
   //           new NavigationReactPackage(),
   //           new ReactNativeConfigPackage()
   //     );
