@@ -10,7 +10,7 @@ import {
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './styles/Companies';
 import * as itemsActions from './items.actions';
 import CardView from './Components/CardView';
@@ -21,7 +21,7 @@ class Companies extends Component {
 
     this.state = { 
         isLoading: true,
-        refreshing: false
+        refreshing: false,
     };
 
     this._viewCompany = this._viewCompany.bind(this);
@@ -31,6 +31,9 @@ class Companies extends Component {
 
   componentWillMount() {
     this._retrieveItems();
+    Icon.getImageSource('md-arrow-back', 20).then((source) => 
+      this.setState({ backIcon: source })
+    );
   }
 
   _retrieveItems(isRefreshed) {
@@ -68,10 +71,10 @@ class Companies extends Component {
       },
       backButtonHidden: true,
       navigatorButtons: {
-        rightButtons: [
+        leftButtons: [
           {
             id: 'close',
-            title: '戻る'
+            icon: this.state.backIcon
           }
         ]
       }

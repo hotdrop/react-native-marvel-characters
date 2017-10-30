@@ -54,3 +54,7 @@ buck-out/
 
 # MySource
 .env
+
+# ignore fonts
+ios/Fonts
+android/app/src/main/assets

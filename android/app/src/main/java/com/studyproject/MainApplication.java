@@ -4,6 +4,7 @@ package com.studyproject;
 import com.reactnativenavigation.NavigationApplication;
 
 //import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
 //import com.reactnativenavigation.NavigationReactPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 //import com.facebook.react.ReactNativeHost;
@@ -42,6 +43,7 @@ public class MainApplication extends NavigationApplication {
   //   protected List<ReactPackage> getPackages() {
   //     return Arrays.<ReactPackage>asList(
   //         new MainReactPackage(),
+            new VectorIconsPackage(),
   //           new NavigationReactPackage(),
   //           new ReactNativeConfigPackage()
   //     );

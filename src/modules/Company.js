@@ -12,6 +12,8 @@ import styles from './styles/Company';
 class Company extends Component {
     constructor(props) {
         super(props);
+
+        this._onScroll = this._onScroll.bind(this);
         this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
     }
 

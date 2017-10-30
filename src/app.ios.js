@@ -20,15 +20,14 @@ const navigatorStyle = {
 
 export default class App extends Component {
 	constructor(props) {
-		super(props);
-    	this.startApp();
+        super(props);
+        this.startApp();
     }
     
     startApp() {
         Navigation.startTabBasedApp({
             tabs: [
                 {
-                    label: '',
                     screen: 'myapp.Companies',
                     title: 'Companies',
                     navigatorStyle
