@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'black'
+        backgroundColor: 'white'
     },
     itemContainer: {
         flex: 1,
@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
         paddingTop: 20
     },
     title: {
-        color: 'white',
+        color: 'black',
 		fontSize: 19,
 		fontWeight: '500',
 		paddingTop: 10
     },
     overview: {
-        color: 'white',
+        color: 'black',
         fontSize: 15,
         paddingTop: 20
     },
@@ -39,16 +39,10 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     tabText: {
-        color: 'white',
+        color: 'black',
         paddingTop: 10,
         fontSize: 12,
         fontWeight: 'bold'
-    },
-    underline: {
-        backgroundColor: '#FFFF00'
-    },
-    tabBar: {
-        backgroundColor: 'white'
     },
     contentContainer: {
 		paddingTop: 20,
@@ -60,12 +54,12 @@ const styles = StyleSheet.create({
 		paddingTop: 10
 	},
 	label: {
-		color: 'white',
+		color: 'black',
 		fontSize: 16,
 		fontWeight: '500'
 	},
 	value: {
-		color: 'white',
+		color: 'black',
 		fontSize: 14
 	}
 });

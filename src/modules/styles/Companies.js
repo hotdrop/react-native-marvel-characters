@@ -1,15 +1,20 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     listView: {
-        paddingTop: 30,
+        backgroundColor: 'white',
+        ...Platform.select({
+            ios: {
+                paddingTop:70
+            }
+        }),
         margin: 5,
         flexDirection: 'row',
         flexWrap: 'wrap'
     },
     loading: {
         flex: 1, 
-        paddingTop: 20
+        paddingTop: 50
     }
 });
 

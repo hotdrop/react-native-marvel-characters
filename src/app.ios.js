@@ -15,7 +15,6 @@ const navigatorStyle = {
     drawUnderNavBar: true,
     drawUnderTabBar: true,
     navBarTextColor: 'white',
-    navBarButtonColor: 'white',
     statusBarTextColorScheme: 'light'
 };
 
@@ -29,9 +28,10 @@ export default class App extends Component {
         Navigation.startTabBasedApp({
             tabs: [
                 {
-                    label: 'One',
+                    label: '',
                     screen: 'myapp.Companies',
-                    title: 'Main Screen'
+                    title: 'Companies',
+                    navigatorStyle
                 }
             ]
         });
