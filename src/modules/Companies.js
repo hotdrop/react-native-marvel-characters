@@ -11,6 +11,7 @@ import {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import styles from './styles/Companies';
 import * as itemsActions from './items.actions';
 import CardView from './Components/CardView';
 
@@ -23,6 +24,7 @@ class Companies extends Component {
         refreshing: false
     };
 
+    this._viewCompany = this._viewCompany.bind(this);
     this._onRefresh = this._onRefresh.bind(this);
     this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
   }
@@ -56,26 +58,39 @@ class Companies extends Component {
 				this.props.navigator.dismissModal();
 			}
 		}
-	}
+  }
+  
+  _viewCompany(company) {
+    this.props.navigator.showModal({
+      screen: 'myapp.Company',
+      passProps: {
+        company
+      },
+      backButtonHidden: true,
+      navigatorButtons: {
+        rightButtons: [
+          {
+            id: 'close',
+            title: '戻る'
+          }
+        ]
+      }
+    });
+  }
 
   render() {
     if(this.state.isLoading) {
       return (
-        <View style={{flex: 1, paddingTop: 20}}>
+        <View style={styles.loading}>
           <ActivityIndicator />
         </View>
       );
     }
     return (
-      <ListView contentContainerStyle={{
-          paddingTop: 30,
-          margin: 5,
-          flexDirection: 'row',
-          flexWrap: 'wrap'
-        }}
+      <ListView contentContainerStyle={styles.listView}
         enableEmptySections
         dataSource={this.state.dataSource}
-        renderRow={rowData => <CardView info = {rowData} /> }
+        renderRow={rowData => <CardView company = {rowData} viewCompany={this._viewCompany} /> }
         refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
