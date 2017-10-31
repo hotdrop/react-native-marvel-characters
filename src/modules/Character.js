@@ -34,47 +34,56 @@ class Character extends Component {
                     <Image source={require('../../images/sample.png')} style={styles.image} />
                     <View style={styles.titleArea}>
                         <Text style={styles.title}>Iron Man</Text>
-                        <Text style={tyles.title}>some text</Text>
                     </View>
                 </View>
                 <View style={styles.contentArea}>
                     <View style={styles.contentContainer}>
                         <View style={styles.labelRow}>
-                            <Text style={styles.label}>description</Text>
+                            <Text style={styles.label}>Description</Text>
                             <Text style={styles.value}>
                                 Wounded, captured and forced to build a weapon by his enemies, billionaire industrialist Tony Stark instead created an advanced suit of armor to save his life and escape captivity. Now with a new outlook on life, Tony uses his money and intelligence to make the world a safer, better place as Iron Man.
                             </Text>
                         </View>
                         <View style={styles.labelRow}>
-                            <Text style={styles.label}>comics</Text>
+                            <Text style={styles.label}>Comics</Text>
                             <Text style={styles.value}>available: 2296</Text>
                         </View>
                         <View style={styles.labelRow}>
-                            <Text style={styles.label}>comics series</Text>
+                            <Text style={styles.label}>Series</Text>
                             <Text style={styles.value}>available: 547</Text>
                         </View>
                         <View style={styles.labelRow}>
-                            <Text style={styles.label}>comics stories</Text>
+                            <Text style={styles.label}>Stories</Text>
                             <Text style={styles.value}>available: 3264</Text>
                         </View>
                         <View style={styles.labelRow}>
-                            <Text style={styles.label}>comics event</Text>
+                            <Text style={styles.label}>Event</Text>
                             <Text style={styles.value}>available: 29</Text>
                             <Text style={styles.value}> A+X (2012) #2</Text>
                         </View>
                         <View style={styles.labelRow}>
-                            <Text style={styles.label}>urls</Text>
+                            <Text style={styles.label}>Other</Text>
                             <Hyperlink
                                 linkStyle={styles.urlLink}
-                                linkText={ url => url === 'http://marvel.com/characters/29/iron_man?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c' ? 'Hyperlink' : url }>
-                                <Text style={styles.urlLinkText}>detail</Text>
+                                linkText={ url => url === 'http://marvel.com/characters/29/iron_man?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c' ? 'detail' : url }>
+                                <Text style={styles.urlLinkText}> 
+                                    http://marvel.com/characters/29/iron_man?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c
+                                </Text>
                             </Hyperlink>
                             <Hyperlink
                                 linkStyle={styles.urlLink}
-                                linkText={ url => url === 'http://marvel.com/universe/Iron_Man_(Anthony_Stark)?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c' ? 'Hyperlink' : url }>
-                                <Text style={styles.urlLinkText}>wiki</Text>
+                                linkText={ url => url === 'http://marvel.com/universe/Iron_Man_(Anthony_Stark)?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c' ? 'wiki' : url }>
+                                <Text style={styles.urlLinkText}>
+                                    http://marvel.com/universe/Iron_Man_(Anthony_Stark)?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c
+                                </Text>
                             </Hyperlink>
-                            <Text style={styles.value}>comiclink: http://marvel.com/comics/characters/1009368/iron_man?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c</Text>
+                            <Hyperlink
+                                linkStyle={styles.urlLink}
+                                linkText={ url => url === 'http://marvel.com/comics/characters/1009368/iron_man?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c' ? 'comiclink' : url }>
+                                <Text style={styles.urlLinkText}>
+                                    http://marvel.com/comics/characters/1009368/iron_man?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c
+                                </Text>
+                            </Hyperlink>
                         </View>
                     </View>
                 </View>

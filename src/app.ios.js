@@ -32,7 +32,12 @@ export default class App extends Component {
                     title: 'Characters',
                     navigatorStyle
                 }
-            ]
+            ],
+            tabsStyle: {
+				tabBarButtonColor: 'white',
+				tabBarSelectedButtonColor: 'white',
+				tabBarBackgroundColor: 'black'
+			}
         });
     }
 }

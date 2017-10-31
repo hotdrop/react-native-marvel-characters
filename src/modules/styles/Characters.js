@@ -2,13 +2,13 @@ import { Platform, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     listView: {
-        backgroundColor: 'white',
+        backgroundColor: 'black',
         ...Platform.select({
             ios: {
                 paddingTop:70
             }
         }),
-        margin: 5,
+        
         flexDirection: 'row',
         flexWrap: 'wrap'
     },

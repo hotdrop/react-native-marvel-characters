@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#aaaaaa',
 		color: 'black',
 		fontSize: 16,
-		fontWeight: '500'
+        fontWeight: '500'
 	},
 	value: {
         color: 'white',
@@ -58,7 +58,9 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     urlLinkText: {
-        fontSize: 15
+        color: 'white',
+        fontSize: 15,
+        paddingLeft: 10
     }
 });
 

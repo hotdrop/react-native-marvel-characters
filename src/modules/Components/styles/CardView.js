@@ -2,12 +2,13 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({ 
     cardItem: {
-        height:200,
+        height:180,
         width: 110,
         backgroundColor: 'white',
         flexDirection: 'column',
         marginRight: 5,
         marginLeft: 5,
+        marginBottom: 5,
         borderRadius: 3
     },
     cardImage: {
