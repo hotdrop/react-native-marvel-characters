@@ -7,6 +7,7 @@ import {
     View
 } from 'react-native';
 
+import LinearGradient from 'react-native-linear-gradient';
 import Hyperlink from 'react-native-hyperlink';
 import styles from './styles/Character';
 
@@ -29,11 +30,14 @@ class Character extends Component {
         return (
             <ScrollView
                 style={styles.container}>
-
-                <View style={styles.itemContainer}>
-                    <Image source={{uri: `${character.thumbnail.path}.${character.thumbnail.extension}`}} style={styles.image} />
-                    <View style={styles.titleArea}>
-                        <Text style={styles.title}>{character.name}</Text>
+                <View>
+                    <Image source={require('../../images/backcover.png')} style={styles.backImage} />
+                    <LinearGradient colors={['rgba(0, 0, 0, 0.5)', 'rgba(0,0,0, 0.7)', 'rgba(0,0,0, 0.8)']} style={styles.linearGradient} />
+                    <View style={styles.itemContainer}>
+                        <Image source={{uri: `${character.thumbnail.path}.${character.thumbnail.extension}`}} style={styles.image} />
+                        <View style={styles.titleArea}>
+                            <Text style={styles.title}>{character.name}</Text>
+                        </View>
                     </View>
                 </View>
                 <View style={styles.contentArea}>

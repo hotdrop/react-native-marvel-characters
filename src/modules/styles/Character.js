@@ -4,9 +4,20 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'black'
     },
+    backImage: {
+        height: 236,
+		backgroundColor: 'black'
+    },
+    linearGradient: {
+		top: 0,
+		left: 0,
+		right: 0,
+        height: 236,
+        position: 'absolute'
+	},
     itemContainer: {
-        flex: 1,
-        top: 20,
+        position: 'absolute',
+        top: 30,
         right: 16,
         left: 16,
         flexDirection: 'row'
@@ -30,13 +41,11 @@ const styles = StyleSheet.create({
 		paddingTop: 10
     },
     contentArea: {
-        flex: 1,
-        marginTop: 20
+        flex: 1
     },
     contentContainer: {
-		paddingTop: 30,
 		paddingHorizontal: 16,
-        paddingBottom: 25
+        paddingBottom: 10
     },
     labelRow: {
         flexDirection: 'row',
@@ -61,6 +70,7 @@ const styles = StyleSheet.create({
     available: {
         color: 'white',
         paddingLeft: 10,
+        paddingTop: 5,
 		fontSize: 14
     },
     comicsList: {

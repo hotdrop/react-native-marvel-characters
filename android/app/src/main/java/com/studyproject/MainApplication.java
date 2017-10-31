@@ -4,6 +4,7 @@ package com.studyproject;
 import com.reactnativenavigation.NavigationApplication;
 
 //import com.facebook.react.ReactApplication;
+import com.BV.LinearGradient.LinearGradientPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 //import com.reactnativenavigation.NavigationReactPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
@@ -25,6 +26,7 @@ public class MainApplication extends NavigationApplication {
   protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new VectorIconsPackage(),
+        new LinearGradientPackage(),
         new ReactNativeConfigPackage()
       );
   }
