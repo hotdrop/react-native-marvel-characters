@@ -52,9 +52,10 @@ buck-out/
 */fastlane/Preview.html
 */fastlane/screenshots
 
-# MySource
+# MyResource
 .env
+images
 
-# ignore fonts
+# fonts
 ios/Fonts
 android/app/src/main/assets
