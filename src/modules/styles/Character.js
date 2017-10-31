@@ -39,27 +39,57 @@ const styles = StyleSheet.create({
         paddingBottom: 25
     },
     labelRow: {
-		flexDirection: 'column',
+        flexDirection: 'row',
         paddingTop: 10,
-	},
+    },
+    labelColumn: {
+        flexDirection: 'column',
+        paddingTop: 10,
+    },
 	label: {
         backgroundColor: '#aaaaaa',
 		color: 'black',
 		fontSize: 16,
         fontWeight: '500'
-	},
-	value: {
+    },
+	description: {
         color: 'white',
         paddingTop: 10,
+        paddingLeft: 10,
 		fontSize: 14
+    },
+    available: {
+        color: 'white',
+        paddingLeft: 10,
+		fontSize: 14
+    },
+    comicsList: {
+        color: '#F85AFE',
+        paddingLeft: 10,
+        fontSize: 14
+    },
+    seriesList: {
+        color: '#008088',
+        paddingLeft: 10,
+        fontSize: 14
+    },
+    storiesList: {
+        color: '#009922',
+        paddingLeft: 10,
+        fontSize: 14
+    },
+    eventsList: {
+        color: '#AF69FD',
+        paddingLeft: 10,
+        fontSize: 14
     },
     urlLink: {
         color: '#2980b9',
-        fontSize: 20
+        fontSize: 14
     },
     urlLinkText: {
         color: 'white',
-        fontSize: 15,
+        fontSize: 14,
         paddingLeft: 10
     }
 });

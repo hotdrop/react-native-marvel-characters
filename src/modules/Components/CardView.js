@@ -14,7 +14,7 @@ class CardView extends Component {
         return (
             <TouchableOpacity activeOpacity={0.7} onPress={viewCharacter.bind(this, character)}>
                 <View style={styles.cardItem}>
-                    <Image source={require('../../../images/sample.png')} style={styles.cardImage} />
+                    <Image source={{uri: `${character.thumbnail.path}.${character.thumbnail.extension}`}} style={styles.cardImage} />
                     <View style={styles.cardInfo}>
                         <Text style={styles.cardText} numberOfLines={2}>
                             {character.name}

@@ -22,9 +22,11 @@ class Characters extends Component {
     this.state = { 
         loading: true,
         refreshing: false,
+        offset: 0,
     };
 
     this._viewCharacter = this._viewCharacter.bind(this);
+    // this._onEndReached = this._onEndReached.bind(this);
     this._onRefresh = this._onRefresh.bind(this);
     this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
   }
@@ -37,7 +39,7 @@ class Characters extends Component {
   }
 
   _retrieveCharacters(isRefreshed) {
-    this.props.actions.retrieveCharacters()
+    this.props.actions.retrieveCharacters(this.state.offset)
       .then(() => {
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.setState({
@@ -48,6 +50,17 @@ class Characters extends Component {
         console.log('retrieve characters: Error:', err);
       });
     if (isRefreshed && this.setState({ refreshing: false }));
+  }
+
+  // とりあえずこれは未コールで進める
+  _onEndReached() {
+    if(!this.state.loading) {
+      this.setState({
+        isLoading: true,
+        offset: this.state.offset += 20
+      });
+      _retrieveCharacters()
+    }
   }
 
   _onRefresh() {

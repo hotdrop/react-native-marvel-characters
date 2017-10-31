@@ -2,27 +2,27 @@ import axios from 'axios';
 import * as types from '../constants/actionTypes';
 
 import md5 from 'js-md5';
-import { MARVEL_URL } from '../constants/api';
+import { MARVEL_URL, MARVEL_PUBLIC_API_KEY, MARVEL_PRIVATE_API_KEY } from '../constants/api';
+
+const API_LIMIT = 20;
 
 export function retrieveCharactersSuccess(res) {
     return {
         type: types.RETRIEVE_CHARACTERS_SUCCESS,
-        characters: res.data
+        characters: res.data.data.results
     };
 }
 
-export function retrieveCharacters() {
+export function retrieveCharacters(offsetNum) {
     return function (dispatch) {
-        return axios.get(`${MARVEL_URL}/companies`, {
-            params: {
-              fromDateEpoch: 0
-            }
-          })
+        const timestamp = 1;
+        const nowHash = md5(timestamp + MARVEL_PRIVATE_API_KEY + MARVEL_PUBLIC_API_KEY);
+        return axios.get(`${MARVEL_URL}/characters?ts=${timestamp}&orderBy=name&limit=${API_LIMIT}&hash=${nowHash}&offset=${offsetNum}&apikey=${MARVEL_PUBLIC_API_KEY}`)
           .then(res => {
             dispatch(retrieveCharactersSuccess(res));
           })
           .catch((error) => {
-            console.error(error);
+            console.error("retrieveCharacters :" + error);
           });
     };
 }

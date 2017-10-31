@@ -24,7 +24,7 @@ const navigatorStyle = {
 Navigation.startSingleScreenApp({
 	screen: {
 		screen: 'myapp.Characters',
-		title: 'Characters',
+		title: 'Mervel Characters',
 		navigatorStyle
 	}
 });

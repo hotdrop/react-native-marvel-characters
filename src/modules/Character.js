@@ -31,59 +31,67 @@ class Character extends Component {
                 style={styles.container}>
 
                 <View style={styles.itemContainer}>
-                    <Image source={require('../../images/sample.png')} style={styles.image} />
+                    <Image source={{uri: `${character.thumbnail.path}.${character.thumbnail.extension}`}} style={styles.image} />
                     <View style={styles.titleArea}>
-                        <Text style={styles.title}>Iron Man</Text>
+                        <Text style={styles.title}>{character.name}</Text>
                     </View>
                 </View>
                 <View style={styles.contentArea}>
                     <View style={styles.contentContainer}>
-                        <View style={styles.labelRow}>
+                        <View style={styles.labelColumn}>
                             <Text style={styles.label}>Description</Text>
-                            <Text style={styles.value}>
-                                Wounded, captured and forced to build a weapon by his enemies, billionaire industrialist Tony Stark instead created an advanced suit of armor to save his life and escape captivity. Now with a new outlook on life, Tony uses his money and intelligence to make the world a safer, better place as Iron Man.
+                            <Text style={styles.description}>
+                                {character.description}
                             </Text>
                         </View>
-                        <View style={styles.labelRow}>
+                        <View style={styles.labelColumn}>
                             <Text style={styles.label}>Comics</Text>
-                            <Text style={styles.value}>available: 2296</Text>
+                            <Text style={styles.available}>[available: {character.comics.available}]</Text>
                         </View>
-                        <View style={styles.labelRow}>
+                        <View style={styles.labelColumn}>
+                            {character.comics.items.map(item => (
+                                <Text key={item.resourceURI} style={styles.comicsList}>・{item.name}</Text>
+                            ))}
+                        </View>
+                        <View style={styles.labelColumn}>
                             <Text style={styles.label}>Series</Text>
-                            <Text style={styles.value}>available: 547</Text>
+                            <Text style={styles.available}>[available: {character.series.available}]</Text>
                         </View>
-                        <View style={styles.labelRow}>
+                        <View style={styles.labelColumn}>
+                            {character.series.items.map(item => (
+                                <Text key={item.resourceURI} style={styles.seriesList}>・{item.name}</Text>
+                            ))}
+                        </View>
+                        <View style={styles.labelColumn}>
                             <Text style={styles.label}>Stories</Text>
-                            <Text style={styles.value}>available: 3264</Text>
+                            <Text style={styles.available}>[available: {character.stories.available}]</Text>
                         </View>
-                        <View style={styles.labelRow}>
+                        <View style={styles.labelColumn}>
+                            {character.stories.items.map(item => (
+                                <Text key={item.resourceURI} style={styles.storiesList}>・{item.name}</Text>
+                            ))}
+                        </View>
+                        <View style={styles.labelColumn}>
                             <Text style={styles.label}>Event</Text>
-                            <Text style={styles.value}>available: 29</Text>
-                            <Text style={styles.value}> A+X (2012) #2</Text>
+                            <Text style={styles.available}>[available: {character.events.available}]</Text>
                         </View>
-                        <View style={styles.labelRow}>
+                        <View style={styles.labelColumn}>
+                            {character.events.items.map(item => (
+                                <Text key={item.resourceURI} style={styles.eventsList}>・{item.name}</Text>
+                            ))}
+                        </View>
+                        <View style={styles.labelColumn}>
                             <Text style={styles.label}>Other</Text>
-                            <Hyperlink
-                                linkStyle={styles.urlLink}
-                                linkText={ url => url === 'http://marvel.com/characters/29/iron_man?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c' ? 'detail' : url }>
-                                <Text style={styles.urlLinkText}> 
-                                    http://marvel.com/characters/29/iron_man?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c
-                                </Text>
-                            </Hyperlink>
-                            <Hyperlink
-                                linkStyle={styles.urlLink}
-                                linkText={ url => url === 'http://marvel.com/universe/Iron_Man_(Anthony_Stark)?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c' ? 'wiki' : url }>
-                                <Text style={styles.urlLinkText}>
-                                    http://marvel.com/universe/Iron_Man_(Anthony_Stark)?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c
-                                </Text>
-                            </Hyperlink>
-                            <Hyperlink
-                                linkStyle={styles.urlLink}
-                                linkText={ url => url === 'http://marvel.com/comics/characters/1009368/iron_man?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c' ? 'comiclink' : url }>
-                                <Text style={styles.urlLinkText}>
-                                    http://marvel.com/comics/characters/1009368/iron_man?utm_campaign=apiRef&utm_source=2d9316c75865efd061093c86c624011c
-                                </Text>
-                            </Hyperlink>
+                            {character.urls.map(item => (
+                                <Hyperlink
+                                    key={item.type}
+                                    linkStyle={styles.urlLink}
+                                    linkText={ url => url === item.url ? item.type : url }>
+                                    <Text style={styles.urlLinkText}> 
+                                        link to {item.url}
+                                    </Text>
+                                </Hyperlink>
+                            ))}
                         </View>
                     </View>
                 </View>
