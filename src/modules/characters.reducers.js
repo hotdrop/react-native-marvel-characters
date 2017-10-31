@@ -3,10 +3,10 @@ import initialState from '../reducers/initialState';
 
 export default function (state = initialState.items, action) {
     switch (action.type) {
-        case types.RETRIEVE_ITEMS_SUCCESS:
+        case types.RETRIEVE_CHARACTERS_SUCCESS:
             return {
                 ...state,
-                companies: action.companies
+                characters: action.characters
             };
         default:
             return state;

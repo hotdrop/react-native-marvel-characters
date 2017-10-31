@@ -11,48 +11,48 @@ import {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
-import styles from './styles/Companies';
-import * as itemsActions from './items.actions';
+import styles from './styles/Characters';
+import * as charactersActions from './characters.actions';
 import CardView from './Components/CardView';
 
-class Companies extends Component {
+class Characters extends Component {
   constructor(props) {
     super(props);
 
     this.state = { 
-        isLoading: true,
+        loading: true,
         refreshing: false,
     };
 
-    this._viewCompany = this._viewCompany.bind(this);
+    this._viewCharacter = this._viewCharacter.bind(this);
     this._onRefresh = this._onRefresh.bind(this);
     this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
   }
 
   componentWillMount() {
-    this._retrieveItems();
+    this._retrieveCharacters();
     Icon.getImageSource('md-arrow-back', 20).then((source) => 
       this.setState({ backIcon: source })
     );
   }
 
-  _retrieveItems(isRefreshed) {
-    this.props.actions.retrieveItems()
+  _retrieveCharacters(isRefreshed) {
+    this.props.actions.retrieveCharacters()
       .then(() => {
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.setState({
-            dataSource: ds.cloneWithRows(this.props.companies),
-            isLoading: false
+            dataSource: ds.cloneWithRows(this.props.characters),
+            loading: false
         });
       }).catch(err => {
-        console.log('retrieve items: Error:', err);
+        console.log('retrieve characters: Error:', err);
       });
     if (isRefreshed && this.setState({ refreshing: false }));
   }
 
   _onRefresh() {
     this.setState({ refreshing: true });
-    this._retrieveItems('isRefreshed');
+    this._retrieveCharacters('isRefreshed');
   }
 
   _onNavigatorEvent(event) {
@@ -63,11 +63,11 @@ class Companies extends Component {
 		}
   }
   
-  _viewCompany(company) {
+  _viewCharacter(character) {
     this.props.navigator.showModal({
-      screen: 'myapp.Company',
+      screen: 'myapp.Character',
       passProps: {
-        company
+        character
       },
       backButtonHidden: true,
       navigatorButtons: {
@@ -82,7 +82,7 @@ class Companies extends Component {
   }
 
   render() {
-    if(this.state.isLoading) {
+    if(this.state.loading) {
       return (
         <View style={styles.loading}>
           <ActivityIndicator />
@@ -93,7 +93,7 @@ class Companies extends Component {
       <ListView contentContainerStyle={styles.listView}
         enableEmptySections
         dataSource={this.state.dataSource}
-        renderRow={rowData => <CardView company = {rowData} viewCompany={this._viewCompany} /> }
+        renderRow={rowData => <CardView character = {rowData} viewCharacter = {this._viewCharacter} /> }
         refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
@@ -106,21 +106,21 @@ class Companies extends Component {
   }
 }
 
-Companies.propTypes = {
+Characters.propTypes = {
   actions: PropTypes.object.isRequired,
-  companies: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
+  characters: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-      companies: state.items.companies
+    characters: state.items.characters
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-      actions: bindActionCreators(itemsActions, dispatch)
+      actions: bindActionCreators(charactersActions, dispatch)
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Companies);
+export default connect(mapStateToProps, mapDispatchToProps)(Characters);

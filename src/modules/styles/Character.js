@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white'
+        backgroundColor: 'black'
     },
     itemContainer: {
         flex: 1,
@@ -17,51 +17,49 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 3,
         borderBottomLeftRadius: 3
     },
-    overviewArea: {
+    titleArea: {
         flex: 1,
-        paddingLeft: 10,
+        paddingLeft: 20,
         paddingRight: 10,
-        paddingTop: 20
+        paddingTop: 50
     },
     title: {
-        color: 'black',
-		fontSize: 19,
+        color: 'white',
+		fontSize: 22,
 		fontWeight: '500',
 		paddingTop: 10
-    },
-    overview: {
-        color: 'black',
-        fontSize: 15,
-        paddingTop: 20
     },
     contentArea: {
         flex: 1,
         marginTop: 20
     },
-    tabText: {
-        color: 'black',
-        paddingTop: 10,
-        fontSize: 12,
-        fontWeight: 'bold'
-    },
     contentContainer: {
-		paddingTop: 20,
+		paddingTop: 30,
 		paddingHorizontal: 16,
         paddingBottom: 25
     },
     labelRow: {
 		flexDirection: 'column',
-		paddingTop: 10
+        paddingTop: 10,
 	},
 	label: {
+        backgroundColor: '#aaaaaa',
 		color: 'black',
 		fontSize: 16,
 		fontWeight: '500'
 	},
 	value: {
-		color: 'black',
+        color: 'white',
+        paddingTop: 10,
 		fontSize: 14
-	}
+    },
+    urlLink: {
+        color: '#2980b9',
+        fontSize: 20
+    },
+    urlLinkText: {
+        fontSize: 15
+    }
 });
 
 export default styles;

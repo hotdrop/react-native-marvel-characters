@@ -10,14 +10,14 @@ class CardView extends Component {
     }
 
     render() {
-        const { company, viewCompany } = this.props;
+        const { character, viewCharacter } = this.props;
         return (
-            <TouchableOpacity activeOpacity={0.7} onPress={viewCompany.bind(this, company)}>
+            <TouchableOpacity activeOpacity={0.7} onPress={viewCharacter.bind(this, character)}>
                 <View style={styles.cardItem}>
-                    <Image source={require('../../../images/coffee.png')} style={styles.cardImage} />
+                    <Image source={require('../../../images/sample.png')} style={styles.cardImage} />
                     <View style={styles.cardInfo}>
                         <Text style={styles.cardText} numberOfLines={3}>
-                            {company.name}
+                            {character.name}
                         </Text>
                     </View>
                 </View>

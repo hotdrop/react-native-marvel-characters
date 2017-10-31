@@ -1,9 +1,9 @@
 import { Navigation } from 'react-native-navigation';
 
-import Companies from './modules/Companies';
-import Company from './modules/Company';
+import Characters from './modules/Characters';
+import Character from './modules/Character';
 
 export function registerScreens(store, provider) {
-    Navigation.registerComponent('myapp.Companies', () => Companies, store, provider);
-    Navigation.registerComponent('myapp.Company', () => Company, store, provider);
+    Navigation.registerComponent('myapp.Characters', () => Characters, store, provider);
+    Navigation.registerComponent('myapp.Character', () => Character, store, provider);
 }

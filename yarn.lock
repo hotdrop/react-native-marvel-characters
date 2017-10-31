@@ -2434,6 +2434,10 @@ jest@21.2.1:
   dependencies:
     jest-cli "^21.2.1"
 
+js-md5@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/js-md5/-/js-md5-0.7.1.tgz#4f6f8fe22f9e09ad4a65ba67a780a76c0922bb75"
+
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
@@ -2572,6 +2576,12 @@ levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
+
+linkify-it@^1.2.0:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/linkify-it/-/linkify-it-1.2.4.tgz#0773526c317c8fd13bd534ee1d180ff88abf881a"
+  dependencies:
+    uc.micro "^1.0.1"
 
 load-json-file@^1.0.0:
   version "1.1.0"
@@ -3386,6 +3396,12 @@ react-native-config@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-0.9.0.tgz#5a82874a2f75a44c3c421e03d8910228f17cea35"
 
+react-native-hyperlink@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/react-native-hyperlink/-/react-native-hyperlink-0.0.11.tgz#26e2b37d48759545289ad9c8cbec7cf46f1ef482"
+  dependencies:
+    linkify-it "^1.2.0"
+
 react-native-navigation@^1.1.253:
   version "1.1.253"
   resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-1.1.253.tgz#a6ec7b141d5ccf32e7d5a49cac73f2d36a86dc9c"
@@ -4173,6 +4189,10 @@ typedarray@^0.0.6:
 ua-parser-js@^0.7.9:
   version "0.7.17"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.17.tgz#e9ec5f9498b9ec910e7ae3ac626a805c4d09ecac"
+
+uc.micro@^1.0.1:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/uc.micro/-/uc.micro-1.0.3.tgz#7ed50d5e0f9a9fb0a573379259f2a77458d50192"
 
 uglify-js@2.7.5:
   version "2.7.5"

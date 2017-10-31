@@ -23,8 +23,8 @@ const navigatorStyle = {
 
 Navigation.startSingleScreenApp({
 	screen: {
-		screen: 'myapp.Companies',
-		title: 'Main Screen',
+		screen: 'myapp.Characters',
+		title: 'Characters',
 		navigatorStyle
 	}
 });

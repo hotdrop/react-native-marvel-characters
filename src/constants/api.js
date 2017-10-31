@@ -1,3 +1,5 @@
 import Config from 'react-native-config';
 
-export const MY_API_URL = Config.MY_API_URL;
+export const MARVEL_URL = Config.MARVEL_URL;
+export const MARVEL_PUBLIC_API_KEY = Config.MARVEL_PUBLIC_API_KEY;
+export const MARVEL_PRIVATE_API_KEY = Config.MARVEL_PRIVATE_API_KEY

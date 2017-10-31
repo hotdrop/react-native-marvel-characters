@@ -28,8 +28,8 @@ export default class App extends Component {
         Navigation.startTabBasedApp({
             tabs: [
                 {
-                    screen: 'myapp.Companies',
-                    title: 'Companies',
+                    screen: 'myapp.Characters',
+                    title: 'Characters',
                     navigatorStyle
                 }
             ]
