@@ -22,7 +22,7 @@ class Characters extends Component {
     this.state = { 
         loading: true,
         refreshing: false,
-        offset: 0,
+        offset: 60,
     };
 
     this._viewCharacter = this._viewCharacter.bind(this);
@@ -47,12 +47,12 @@ class Characters extends Component {
             loading: false
         });
       }).catch(err => {
-        console.log('retrieve characters: Error:', err);
+        console.log('Characters-retrieveCharacters Error:', err);
       });
     if (isRefreshed && this.setState({ refreshing: false }));
   }
 
-  // とりあえずこれは未コールで進める
+  // とりあえずここは未実装として進める
   _onEndReached() {
     if(!this.state.loading) {
       this.setState({

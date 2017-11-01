@@ -4,7 +4,7 @@ import * as types from '../constants/actionTypes';
 import md5 from 'js-md5';
 import { MARVEL_URL, MARVEL_PUBLIC_API_KEY, MARVEL_PRIVATE_API_KEY } from '../constants/api';
 
-const API_LIMIT = 20;
+const API_LIMIT = 40;
 
 export function retrieveCharactersSuccess(res) {
     return {
@@ -22,7 +22,7 @@ export function retrieveCharacters(offsetNum) {
             dispatch(retrieveCharactersSuccess(res));
           })
           .catch((error) => {
-            console.error("retrieveCharacters :" + error);
+            console.error("actions-retrieveCharacters Error:" + error);
           });
     };
 }
