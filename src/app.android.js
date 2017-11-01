@@ -14,6 +14,7 @@ const navigatorStyle = {
 	drawUnderTabBar: true,
 	navBarBackgroundColor: 'black',
 	navBarTextColor: 'white',
+	statusBarColor: 'black',
 	statusBarTextColorScheme: 'light',
 	navigationBarColor: 'black',	
 	topBarElevationShadowEnabled: false,

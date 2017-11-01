@@ -36,4 +36,4 @@ react-native run-android
 ```
 
 # スクリーンショット
-あとで
+<img src="screenshot/top_screen_ios.png" width="175" />  
