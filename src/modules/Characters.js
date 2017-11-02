@@ -61,9 +61,8 @@ class Characters extends Component {
 
   _loadMoreContentAsync = async () => {
     this.setState({
-        offset: this.state.offset += 12,
+      offset: this.state.offset += 30,
     });
-    // これは成功するが、InfiniteViewのasyncでエラーになってisDisplayErrorがfalseになる。なので2回目以降の更新がされない・・
     this.props.dispatch(this.props.actions.retrieveCharacters(this.state.offset));
   }
 
@@ -116,7 +115,7 @@ class Characters extends Component {
         enableEmptySections
         dataSource={this.state.dataSource}
         renderRow={rowData => <CardView character = {rowData} viewCharacter = {this._viewCharacter.bind(this)} /> }
-        canLoadMore={true}
+        canLoadMore={this.state.offset <= 360}
         distanceToLoadMore={10}
         onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
         refreshControl={
