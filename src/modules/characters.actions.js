@@ -4,7 +4,7 @@ import * as types from '../constants/actionTypes';
 import md5 from 'js-md5';
 import { MARVEL_URL, MARVEL_PUBLIC_API_KEY, MARVEL_PRIVATE_API_KEY } from '../constants/api';
 
-const API_LIMIT = 40;
+const API_LIMIT = 12;
 
 export function retrieveCharactersSuccess(res) {
     return {

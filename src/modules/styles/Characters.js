@@ -5,16 +5,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
         ...Platform.select({
             ios: {
-                paddingTop:70
+                paddingTop: 70
             }
         }),
-        
         flexDirection: 'row',
         flexWrap: 'wrap'
     },
     loading: {
         flex: 1, 
-        paddingTop: 50
+        paddingTop: 100
     }
 });
 
