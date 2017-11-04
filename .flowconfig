@@ -16,6 +16,9 @@
 ; Ignore polyfills
 .*/Libraries/polyfills/.*
 
+; Ignore node_modules
+<PROJECT_ROOT>/node_modules/react-native-linear-gradient/index.ios.js
+
 [include]
 
 [libs]
