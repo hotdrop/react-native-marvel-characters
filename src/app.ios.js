@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { Provider } from 'react-redux';
@@ -18,7 +18,7 @@ const navigatorStyle = {
     statusBarTextColorScheme: 'light'
 };
 
-export default class App extends Component {
+export default class App extends React.Component {
 	constructor(props) {
         super(props);
         this.startApp();

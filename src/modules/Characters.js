@@ -130,8 +130,7 @@ class Characters extends React.Component {
 Characters.propTypes = {
   actions: PropTypes.object.isRequired,
   characters: PropTypes.array.isRequired,
-  navigator: PropTypes.object,
-  dispatch: PropTypes.object
+  navigator: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
