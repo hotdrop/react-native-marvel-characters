@@ -1,9 +1,9 @@
 # react-native-marvel-characters
 React Nativeを勉強するために作成したアプリです。  
-私の好きなMarvelのAPIを発見したため、それを使用しました。
+Marvel APIを使用しています。
 
 # 前準備
-以下の2つを準備してください。
+準備するものは2つです。
 
 ## Marvel APIのPublic KeyとPrivate Key
 Marvel Developer siteにいってユーザー登録をしてください。  
@@ -20,18 +20,24 @@ MARVEL_PRIVATE_API_KEY=YOUR＿PRIVATE＿API
 自分の好きな画像を取得し、作成したimagesの中に **backcover.png** というファイル名で保存してください。
 
 # 使い方
-yarnでこのプロジェクトを起動してください。
+以下を行う前にReactNativeの[Getting Started](https://facebook.github.io/react-native/docs/getting-started.html)の`Building Projects with Native Code`でiOSとAndroidのエミュレータ動作をしておくとスムースに進められると思います。
+
+依存パッケージをinstallします。
+```command
+yarn
+```
+
+react-nativeクライアントを起動します。
 ```command
 yarn start
 ```
 
-起動が完了したら、別のターミナルで以下のいずれかを実行すればエミュレータで起動できます。  
+起動が完了したら、別のターミナルで以下のいずれかを実行します。
 ```command
-// iOS
+// iOS（Xcodeがインストールされている必要があります）
 react-native run-ios
 
-// android
-// 事前にAndroid StudioでVirtual Deviceを起動させてください。
+// android（事前にAndroid StudioでVirtual Deviceを起動させてください。
 react-native run-android
 ```
 
