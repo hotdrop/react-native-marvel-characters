@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   ActivityIndicator,
@@ -17,7 +17,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './styles/Characters';
 import CardView from './Components/CardView';
 
-class Characters extends Component {
+class Characters extends React.Component {
 
   constructor(props) {
     super(props);
@@ -32,25 +32,25 @@ class Characters extends Component {
     this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
   }
 
-  componentWillMount = () => {
+  componentWillMount() {
     this._retrieveCharacters();
     Icon.getImageSource('md-arrow-back', 20).then((source) => 
       this.setState({ backIcon: source })
     );
   }
 
-  componentWillReceiveProps = (props) => {
+  componentWillReceiveProps(props) {
     this.setState({
       dataSource: this.getUpdateDataSource(props.characters),
     });
   }
 
-  getUpdateDataSource = (characters) => {
+  getUpdateDataSource(characters) {
     this.state.listData = this.state.listData.concat(characters);
     return this.state.dataSource.cloneWithRows(this.state.listData);
   }
 
-  _retrieveCharacters = (isRefreshed) => {
+  _retrieveCharacters(isRefreshed) {
     this.props.actions.retrieveCharacters(this.state.offset)
       .then(() => {
         this.setState({ loading: false });
@@ -60,14 +60,14 @@ class Characters extends Component {
     if (isRefreshed && this.setState({ refreshing: false }));
   }
 
-  _loadMoreContentAsync = async () => {
+  async _loadMoreContentAsync() {
     this.setState({
       offset: this.state.offset += 30,
     });
     this.props.dispatch(this.props.actions.retrieveCharacters(this.state.offset));
   }
 
-  _onRefresh = () => {
+  _onRefresh() {
     this.setState({
       listData: [],
       refreshing: true
@@ -75,7 +75,7 @@ class Characters extends Component {
     this._retrieveCharacters('isRefreshed');
   }
 
-  _onNavigatorEvent = (event) => {
+  _onNavigatorEvent(event) {
 		if (event.type === 'NavBarButtonPress') {
 			if (event.id === 'close') {
 				this.props.navigator.dismissModal();
@@ -83,7 +83,7 @@ class Characters extends Component {
 		}
   }
   
-  _viewCharacter = (character) => {
+  _viewCharacter(character) {
     this.props.navigator.showModal({
       screen: 'myapp.Character',
       passProps: {
@@ -101,13 +101,10 @@ class Characters extends Component {
     });
   }
 
-  render = () => {
+  render() {
+    const {} = this.props
     if(this.state.loading) {
-      return (
-        <View style={styles.loading}>
-          <ActivityIndicator />
-        </View>
-      );
+      return (<View style={styles.loading}><ActivityIndicator /></View>);
     }
     return (
       <ListView 
