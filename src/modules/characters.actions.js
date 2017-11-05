@@ -6,15 +6,15 @@ import { MARVEL_URL, MARVEL_PUBLIC_API_KEY, MARVEL_PRIVATE_API_KEY } from '../co
 
 const API_LIMIT = 30;
 
-export function retrieveCharactersSuccess(res) {
+const retrieveCharactersSuccess = (res) => {
     return {
         type: types.RETRIEVE_CHARACTERS_SUCCESS,
         characters: res.data.data.results
     };
 }
 
-export function retrieveCharacters(offsetNum) {
-    return function (dispatch) {
+export const retrieveCharacters = (offsetNum: number) => {
+    return (dispatch) => {
         const timestamp = Number(new Date());
         const nowHash = md5(timestamp + MARVEL_PRIVATE_API_KEY + MARVEL_PUBLIC_API_KEY);
         return axios.get(`${MARVEL_URL}/characters`, {

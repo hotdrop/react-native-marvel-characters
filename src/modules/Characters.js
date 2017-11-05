@@ -18,6 +18,7 @@ import styles from './styles/Characters';
 import CardView from './Components/CardView';
 
 class Characters extends Component {
+
   constructor(props) {
     super(props);
 
@@ -31,25 +32,25 @@ class Characters extends Component {
     this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
   }
 
-  componentWillMount() {
+  componentWillMount = () => {
     this._retrieveCharacters();
     Icon.getImageSource('md-arrow-back', 20).then((source) => 
       this.setState({ backIcon: source })
     );
   }
 
-  componentWillReceiveProps(props) {
+  componentWillReceiveProps = (props) => {
     this.setState({
       dataSource: this.getUpdateDataSource(props.characters),
     });
   }
 
-  getUpdateDataSource(characters) {
+  getUpdateDataSource = (characters) => {
     this.state.listData = this.state.listData.concat(characters);
     return this.state.dataSource.cloneWithRows(this.state.listData);
   }
 
-  _retrieveCharacters(isRefreshed) {
+  _retrieveCharacters = (isRefreshed) => {
     this.props.actions.retrieveCharacters(this.state.offset)
       .then(() => {
         this.setState({ loading: false });
@@ -66,7 +67,7 @@ class Characters extends Component {
     this.props.dispatch(this.props.actions.retrieveCharacters(this.state.offset));
   }
 
-  _onRefresh() {
+  _onRefresh = () => {
     this.setState({
       listData: [],
       refreshing: true
@@ -74,7 +75,7 @@ class Characters extends Component {
     this._retrieveCharacters('isRefreshed');
   }
 
-  _onNavigatorEvent(event) {
+  _onNavigatorEvent = (event) => {
 		if (event.type === 'NavBarButtonPress') {
 			if (event.id === 'close') {
 				this.props.navigator.dismissModal();
@@ -82,7 +83,7 @@ class Characters extends Component {
 		}
   }
   
-  _viewCharacter(character) {
+  _viewCharacter = (character) => {
     this.props.navigator.showModal({
       screen: 'myapp.Character',
       passProps: {
@@ -100,7 +101,7 @@ class Characters extends Component {
     });
   }
 
-  render() {
+  render = () => {
     if(this.state.loading) {
       return (
         <View style={styles.loading}>
@@ -135,13 +136,13 @@ Characters.propTypes = {
   characters: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 };
 
-function mapStateToProps(state, ownProps) {
+const mapStateToProps = (state, ownProps) => {
   return {
     characters: state.items.characters
   };
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return {
       actions: bindActionCreators(charactersActions, dispatch)
   };

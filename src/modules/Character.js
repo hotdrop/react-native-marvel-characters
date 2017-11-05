@@ -12,12 +12,13 @@ import Hyperlink from 'react-native-hyperlink';
 import styles from './styles/Character';
 
 class Character extends Component {
+    
     constructor(props) {
         super(props);
         this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
     }
 
-    _onNavigatorEvent(event) {
+    _onNavigatorEvent = (event) => {
         if(event.type === 'NavBarButtonPress') {
             if(event.id === 'close') {
                 this.props.navigator.dismissModal();
