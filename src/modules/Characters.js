@@ -24,6 +24,7 @@ class Characters extends React.Component {
 
     this.state = {
       listData: [],
+      characters: [],
       dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => JSON.stringify(r1) !== JSON.stringify(r2) }),
       loading: true,
       refreshing: false,
@@ -50,8 +51,8 @@ class Characters extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    this.setState({
-      dataSource: this._getUpdateDataSource(props.characters),
+    this.setState({ 
+      dataSource: this._getUpdateDataSource(props.characters)
     });
   }
 
@@ -61,9 +62,7 @@ class Characters extends React.Component {
   }
 
   async _loadMoreContentAsync() {
-    this.setState({
-      offset: this.state.offset += 30,
-    });
+    this.state.offset += 30;
     this._retrieveCharacters();
   }
 
@@ -130,7 +129,7 @@ class Characters extends React.Component {
 
 Characters.propTypes = {
   actions: PropTypes.object.isRequired,
-  characters: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  characters: PropTypes.array.isRequired,
   navigator: PropTypes.object,
   dispatch: PropTypes.object
 };
