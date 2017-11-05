@@ -1625,6 +1625,10 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
+flow-bin@0.53.0:
+  version "0.53.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.53.0.tgz#f7830e609ca02b12db4127114213cccc7c0771b9"
+
 follow-redirects@^1.2.3:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.2.5.tgz#ffd3e14cbdd5eaa72f61b6368c1f68516c2a26cc"
@@ -3402,6 +3406,14 @@ react-native-hyperlink@^0.0.11:
   dependencies:
     linkify-it "^1.2.0"
 
+react-native-infinite-scroll-view@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/react-native-infinite-scroll-view/-/react-native-infinite-scroll-view-0.4.3.tgz#bc5dfb1645b8966bb6686d4cba899acb229ca003"
+  dependencies:
+    prop-types "^15.5.10"
+    react-clone-referenced-element "^1.0.1"
+    react-native-scrollable-mixin "^1.0.0"
+
 react-native-linear-gradient@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.3.0.tgz#757997197e35edf52e290891a11566e462845da1"
@@ -3413,6 +3425,10 @@ react-native-navigation@^1.1.253:
   resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-1.1.253.tgz#a6ec7b141d5ccf32e7d5a49cac73f2d36a86dc9c"
   dependencies:
     lodash "4.x.x"
+
+react-native-scrollable-mixin@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-scrollable-mixin/-/react-native-scrollable-mixin-1.0.1.tgz#34a32167b64248594154fd0d6a8b03f22740548e"
 
 react-native-vector-icons@^4.4.2:
   version "4.4.2"

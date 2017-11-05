@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// @flow
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
     ScrollView,
@@ -11,13 +12,19 @@ import LinearGradient from 'react-native-linear-gradient';
 import Hyperlink from 'react-native-hyperlink';
 import styles from './styles/Character';
 
-class Character extends Component {
-    constructor(props) {
+type Props = {
+    character: Object,
+    navigator: Object
+}
+
+class Character extends React.Component<Props> {
+
+    constructor(props: Props) {
         super(props);
         this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
     }
 
-    _onNavigatorEvent(event) {
+    _onNavigatorEvent(event: Object) {
         if(event.type === 'NavBarButtonPress') {
             if(event.id === 'close') {
                 this.props.navigator.dismissModal();
@@ -103,9 +110,5 @@ class Character extends Component {
         );
     }
 }
-
-Character.propTypes = {
-	character: PropTypes.object.isRequired
-};
 
 export default Character;

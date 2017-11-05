@@ -1,33 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { 
-  ActivityIndicator, 
-  ListView, 
-  Text, 
+import {
+  ActivityIndicator,
+  Text,
   View,
+  ListView,
   RefreshControl
 } from 'react-native';
+import InfiniteScrollView from 'react-native-infinite-scroll-view';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as charactersActions from './characters.actions';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './styles/Characters';
-import * as charactersActions from './characters.actions';
 import CardView from './Components/CardView';
 
-class Characters extends Component {
+class Characters extends React.Component {
+
   constructor(props) {
     super(props);
 
-    this.state = { 
-        loading: true,
-        refreshing: false,
-        offset: 60,
+    this.state = {
+      listData: [],
+      dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => JSON.stringify(r1) !== JSON.stringify(r2) }),
+      loading: true,
+      refreshing: false,
+      offset: 0
     };
-
-    this._viewCharacter = this._viewCharacter.bind(this);
-    // this._onEndReached = this._onEndReached.bind(this);
-    this._onRefresh = this._onRefresh.bind(this);
     this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
   }
 
@@ -38,33 +39,39 @@ class Characters extends Component {
     );
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({
+      dataSource: this.getUpdateDataSource(props.characters),
+    });
+  }
+
+  getUpdateDataSource(characters) {
+    this.state.listData = this.state.listData.concat(characters);
+    return this.state.dataSource.cloneWithRows(this.state.listData);
+  }
+
   _retrieveCharacters(isRefreshed) {
     this.props.actions.retrieveCharacters(this.state.offset)
       .then(() => {
-        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.setState({
-            dataSource: ds.cloneWithRows(this.props.characters),
-            loading: false
-        });
+        this.setState({ loading: false });
       }).catch(err => {
         console.log('Characters-retrieveCharacters Error:', err);
       });
     if (isRefreshed && this.setState({ refreshing: false }));
   }
 
-  // とりあえずここは未実装として進める
-  _onEndReached() {
-    if(!this.state.loading) {
-      this.setState({
-        isLoading: true,
-        offset: this.state.offset += 20
-      });
-      _retrieveCharacters()
-    }
+  async _loadMoreContentAsync() {
+    this.setState({
+      offset: this.state.offset += 30,
+    });
+    this.props.dispatch(this.props.actions.retrieveCharacters(this.state.offset));
   }
 
   _onRefresh() {
-    this.setState({ refreshing: true });
+    this.setState({
+      listData: [],
+      refreshing: true
+    });
     this._retrieveCharacters('isRefreshed');
   }
 
@@ -95,22 +102,24 @@ class Characters extends Component {
   }
 
   render() {
+    const {} = this.props
     if(this.state.loading) {
-      return (
-        <View style={styles.loading}>
-          <ActivityIndicator />
-        </View>
-      );
+      return (<View style={styles.loading}><ActivityIndicator /></View>);
     }
     return (
-      <ListView contentContainerStyle={styles.listView}
+      <ListView 
+        contentContainerStyle={styles.listView}
+        renderScrollComponent={props => <InfiniteScrollView {...props} />}
         enableEmptySections
         dataSource={this.state.dataSource}
-        renderRow={rowData => <CardView character = {rowData} viewCharacter = {this._viewCharacter} /> }
+        renderRow={rowData => <CardView character = {rowData} viewCharacter = {this._viewCharacter.bind(this)} /> }
+        canLoadMore={this.state.offset <= 360}
+        distanceToLoadMore={10}
+        onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
         refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
+            onRefresh={this._onRefresh.bind(this)}
             title="loading..."
           />
         }
@@ -124,13 +133,13 @@ Characters.propTypes = {
   characters: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 };
 
-function mapStateToProps(state, ownProps) {
+const mapStateToProps = (state, ownProps) => {
   return {
     characters: state.items.characters
   };
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return {
       actions: bindActionCreators(charactersActions, dispatch)
   };
