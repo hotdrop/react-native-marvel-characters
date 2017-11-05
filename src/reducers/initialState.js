@@ -1,6 +1,9 @@
 // @flow
+
+export type Characters = {
+    characters: Object
+};
+
 export default {
-    items: {
-        characters: {}
-    }
+    characters: {}
 };

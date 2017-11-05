@@ -1,3 +1,4 @@
+// @flow
 import Config from 'react-native-config';
 
 export const MARVEL_URL = Config.MARVEL_URL;

@@ -3,7 +3,9 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers/rootReducer';
 
-export default (initialState: Object) => {
+import type { Characters } from '../reducers/initialState';
+
+export default (initialState: Characters) => {
     return createStore(
         rootReducer,
         initialState,

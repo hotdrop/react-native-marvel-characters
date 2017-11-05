@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
+// @flow
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 import styles from './styles/CardView';
 
-class CardView extends Component {
-    constructor(props) {
+type Props = {
+    character: Object,
+    viewCharacter: Function
+};
+
+class CardView extends React.Component<Props> {
+    constructor(props: Props) {
         super(props);
     }
 

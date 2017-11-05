@@ -30,24 +30,13 @@ class Characters extends React.Component {
       offset: 0
     };
     this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
-  }
-
-  componentWillMount() {
-    this._retrieveCharacters();
     Icon.getImageSource('md-arrow-back', 20).then((source) => 
       this.setState({ backIcon: source })
     );
   }
 
-  componentWillReceiveProps(props) {
-    this.setState({
-      dataSource: this.getUpdateDataSource(props.characters),
-    });
-  }
-
-  getUpdateDataSource(characters) {
-    this.state.listData = this.state.listData.concat(characters);
-    return this.state.dataSource.cloneWithRows(this.state.listData);
+  componentWillMount() {
+    this._retrieveCharacters();
   }
 
   _retrieveCharacters(isRefreshed) {
@@ -60,16 +49,28 @@ class Characters extends React.Component {
     if (isRefreshed && this.setState({ refreshing: false }));
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({
+      dataSource: this._getUpdateDataSource(props.characters),
+    });
+  }
+
+  _getUpdateDataSource(characters) {
+    this.state.listData = this.state.listData.concat(characters);
+    return this.state.dataSource.cloneWithRows(this.state.listData);
+  }
+
   async _loadMoreContentAsync() {
     this.setState({
       offset: this.state.offset += 30,
     });
-    this.props.dispatch(this.props.actions.retrieveCharacters(this.state.offset));
+    this._retrieveCharacters();
   }
 
   _onRefresh() {
     this.setState({
       listData: [],
+      offset: 0,
       refreshing: true
     });
     this._retrieveCharacters('isRefreshed');
@@ -102,7 +103,6 @@ class Characters extends React.Component {
   }
 
   render() {
-    const {} = this.props
     if(this.state.loading) {
       return (<View style={styles.loading}><ActivityIndicator /></View>);
     }
@@ -130,10 +130,12 @@ class Characters extends React.Component {
 
 Characters.propTypes = {
   actions: PropTypes.object.isRequired,
-  characters: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
+  characters: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  navigator: PropTypes.object,
+  dispatch: PropTypes.object
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     characters: state.items.characters
   };
