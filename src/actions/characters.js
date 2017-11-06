@@ -1,7 +1,6 @@
 // @flow
 import axios from 'axios';
-import * as types from '../constants/actionTypes';
-
+import * as types from './actionTypes';
 import md5 from 'js-md5';
 import { MARVEL_URL, MARVEL_PUBLIC_API_KEY, MARVEL_PRIVATE_API_KEY } from '../constants/api';
 

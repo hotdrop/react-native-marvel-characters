@@ -4,32 +4,39 @@ import { Navigation } from 'react-native-navigation';
 import { Provider } from 'react-redux';
 import { registerScreens } from './screens';
 
+import { iconsMap, loadIcons } from './constants/icons';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
 
 registerScreens(store, Provider);
 
-const navigatorStyle = {
-    navBarTranslucent: true,
-    drawUnderNavBar: true,
-    drawUnderTabBar: true,
-    navBarTextColor: 'white',
-    statusBarTextColorScheme: 'light'
-};
-
 export default class App extends React.Component {
+
 	constructor(props) {
         super(props);
-        this.startApp();
+        loadIcons.then(() => {
+            this.startApp();
+        });
     }
-    
+
     startApp() {
         Navigation.startTabBasedApp({
             tabs: [
                 {
+                    label: 'Characters',
                     screen: 'myapp.Characters',
                     title: 'Mervel Characters',
+                    icon: iconsMap['ios-people-outline'],
+                    selectedIcon: iconsMap['ios-people'],
+                    navigatorStyle
+                },
+                {
+                    label: 'Comics',
+                    screen: 'myapp.Comics',
+                    title: 'Mervel Comics',
+                    icon: iconsMap['ios-book-outline'],
+                    selectedIcon: iconsMap['ios-book'],
                     navigatorStyle
                 }
             ],
@@ -41,3 +48,12 @@ export default class App extends React.Component {
         });
     }
 }
+
+const navigatorStyle = {
+    navBarTranslucent: true,
+    drawUnderNavBar: true,
+    drawUnderTabBar: true,
+    navBarTextColor: 'white',
+    navBarButtonColor: 'white',
+    statusBarTextColorScheme: 'light'
+};

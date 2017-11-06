@@ -16,7 +16,7 @@ type Props = {
     navigator: Object
 }
 
-class Character extends React.Component<Props> {
+export default class Character extends React.Component<Props> {
 
     constructor(props: Props) {
         super(props);
@@ -109,5 +109,3 @@ class Character extends React.Component<Props> {
         );
     }
 }
-
-export default Character;

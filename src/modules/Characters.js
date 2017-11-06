@@ -12,8 +12,9 @@ import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as charactersActions from './characters.actions';
-import Icon from 'react-native-vector-icons/Ionicons';
+import * as actions from '../actions/characters';
+
+import { iconsMap } from '../constants/icons';
 import styles from './styles/Characters';
 import CardView from './Components/CardView';
 
@@ -31,9 +32,6 @@ class Characters extends React.Component {
       offset: 0
     };
     this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
-    Icon.getImageSource('md-arrow-back', 20).then((source) => 
-      this.setState({ backIcon: source })
-    );
   }
 
   componentWillMount() {
@@ -94,7 +92,7 @@ class Characters extends React.Component {
         leftButtons: [
           {
             id: 'close',
-            icon: this.state.backIcon
+            icon: iconsMap['md-arrow-back']
           }
         ]
       }
@@ -141,7 +139,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      actions: bindActionCreators(charactersActions, dispatch)
+      actions: bindActionCreators(actions, dispatch)
   };
 }
 

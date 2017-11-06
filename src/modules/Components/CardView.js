@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 import styles from './styles/CardView';
