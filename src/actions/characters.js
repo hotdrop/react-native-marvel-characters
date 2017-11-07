@@ -7,20 +7,20 @@ export type CharactersAction = {
     characters: JSON
 };
 
-export type Dispatch = (
+type Dispatch = (
     action: CharactersAction
 ) => any;
 
-const retrieveCharactersSuccess = (res: Object): CharactersAction => {
+const retrieveCharactersSuccess = (res: Object) => {
     return {
         type: types.RETRIEVE_CHARACTERS_SUCCESS,
         characters: res.data.data.results
     };
 }
 
-export const retrieveCharacters = (offsetNum: number): Object => {
+export const retrieveCharacters = (offset: number) => {
     return (dispatch: Dispatch) => {
-        return marvelSite.retrieveCharacters(offsetNum)
+        return marvelSite.retrieveCharacters(offset)
                 .then(res => {
                     dispatch(retrieveCharactersSuccess(res));
                 }).catch(error => {
