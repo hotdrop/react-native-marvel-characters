@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import items from './characters';
+import characters from './characters';
+import comics from './comics';
 
-const rootReducer = combineReducers({
-    items
+export default combineReducers({
+    characters,
+    comics
 });
-
-export default rootReducer;

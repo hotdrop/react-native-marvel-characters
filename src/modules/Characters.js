@@ -55,7 +55,7 @@ class Characters extends React.Component {
   }
 
   _getUpdateDataSource(characters) {
-    this.state.listData = this.state.listData.concat(characters);
+    this.state.listData = this.state.listData.concat(characters);  
     return this.state.dataSource.cloneWithRows(this.state.listData);
   }
 
@@ -133,7 +133,7 @@ Characters.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    characters: state.items.characters
+    characters: state.characters.items
   };
 }
 
