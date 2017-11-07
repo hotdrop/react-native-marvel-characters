@@ -2,10 +2,10 @@ import React from 'react';
 import { View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { Provider } from 'react-redux';
-import { registerScreens } from './screens';
 
-import { iconsMap, loadIcons } from './constants/icons';
 import configureStore from './store/configureStore';
+import { registerScreens } from './screens';
+import { iconsMap, loadIcons } from './constants/icons';
 
 const store = configureStore();
 
