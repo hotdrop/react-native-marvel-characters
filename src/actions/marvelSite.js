@@ -1,42 +1,41 @@
 // @flow
 import axios from 'axios';
 import md5 from 'js-md5';
-import { 
-    MARVEL_URL, 
+import {
     API_LIMIT, 
+    MARVEL_URL, 
     MARVEL_PUBLIC_API_KEY, 
     MARVEL_PRIVATE_API_KEY 
 } from '../constants/api';
 
 export const retrieveCharacters = (offset: number) => {
-    const timestamp = Number(new Date());
-    const hash = createHash(timestamp);
+    const ts = getNumberOfTimestamp();
+    const hash = createHash(ts);
     return axios.get(`${MARVEL_URL}/characters`, {
         params: {
-            ts: timestamp,
+            ts,
+            hash,
+            offset,
             orderBy: 'name',
             limit: API_LIMIT,
-            hash: hash,
-            offset: offset,
             apikey: MARVEL_PUBLIC_API_KEY
         }
     });
 }
 
 export const retrieveComics = (offset: number) => {
-    const timestamp = Number(new Date());
-    const hash = createHash(timestamp);
+    const ts = getNumberOfTimestamp();
+    const hash = createHash(ts);
     return axios.get(`${MARVEL_URL}/comics`, {
         params: {
-            ts: timestamp,
+            ts,
+            hash,
+            offset,
             limit: API_LIMIT,
-            hash: hash,
-            offset: offset,
             apikey: MARVEL_PUBLIC_API_KEY
         }
     });
 }
 
-const createHash = (timestamp: number) => {
-    return md5(timestamp + MARVEL_PRIVATE_API_KEY + MARVEL_PUBLIC_API_KEY);
-}
+const getNumberOfTimestamp = () => Number(new Date());
+const createHash = (ts: number) => md5(ts + MARVEL_PRIVATE_API_KEY + MARVEL_PUBLIC_API_KEY);
