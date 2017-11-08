@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { Component } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 import styles from './styles/CardView';
@@ -9,7 +9,7 @@ type Props = {
     viewCharacter: Function
 };
 
-class CardView extends React.Component<Props> {
+export default class CardView extends Component<Props> {
     constructor(props: Props) {
         super(props);
     }
@@ -30,5 +30,3 @@ class CardView extends React.Component<Props> {
         );
     }
 }
-
-export default CardView;

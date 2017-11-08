@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, ListView } from 'react-native';
 import InfiniteScrollView from 'react-native-infinite-scroll-view';
@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import * as actions from '../actions/characters';
 
-export default class Comics extends React.Component {
+export default class Comics extends Component {
     render() {
         return (
             <View>

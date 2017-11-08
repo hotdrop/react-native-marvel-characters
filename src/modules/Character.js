@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { Component } from 'react';
 import {
     ScrollView,
     Image,
@@ -16,7 +16,7 @@ type Props = {
     navigator: Object
 }
 
-export default class Character extends React.Component<Props> {
+export default class Character extends Component<Props> {
 
     constructor(props: Props) {
         super(props);

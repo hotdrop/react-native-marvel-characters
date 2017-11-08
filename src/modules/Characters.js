@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   ActivityIndicator,
@@ -18,7 +18,7 @@ import { iconsMap } from '../constants/icons';
 import styles from './styles/Characters';
 import CardView from './Components/CardView';
 
-class Characters extends React.Component {
+class Characters extends Component {
 
   constructor(props) {
     super(props);
@@ -127,7 +127,7 @@ class Characters extends React.Component {
 
 Characters.propTypes = {
   actions: PropTypes.object.isRequired,
-  characters: PropTypes.array.isRequired,
+  characters: PropTypes.array,
   navigator: PropTypes.object
 };
 
