@@ -1,10 +1,10 @@
 // @flow
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({ 
-    cardItem: {
+export default StyleSheet.create({ 
+    container: {
         height:180,
-        width: 110,
+        width: 115,
         backgroundColor: 'white',
         flexDirection: 'column',
         marginRight: 5,
@@ -12,20 +12,18 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         borderRadius: 3
     },
-    cardImage: {
+    image: {
         height: 150,
-        width: 110,
+        width: 115,
         borderTopLeftRadius: 3,
         borderBottomLeftRadius: 3
     },
-    cardInfo: {
+    detailArea: {
         paddingHorizontal: 1
     },
-    cardText: {
+    text: {
         color: 'black',
         fontSize: 12,
         fontWeight: '500',
     }
 });
-
-export default styles;

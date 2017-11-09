@@ -18,10 +18,10 @@ export default class CardView extends Component<Props> {
         const { character, viewCharacter } = this.props;
         return (
             <TouchableOpacity activeOpacity={0.7} onPress={viewCharacter.bind(this, character)}>
-                <View style={styles.cardItem}>
-                    <Image source={{uri: `${character.thumbnail.path}.${character.thumbnail.extension}`}} style={styles.cardImage} />
-                    <View style={styles.cardInfo}>
-                        <Text style={styles.cardText} numberOfLines={2}>
+                <View style={styles.container}>
+                    <Image source={{uri: `${character.thumbnail.path}.${character.thumbnail.extension}`}} style={styles.image} />
+                    <View style={styles.detailArea}>
+                        <Text style={styles.text} numberOfLines={2}>
                             {character.name}
                         </Text>
                     </View>
