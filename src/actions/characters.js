@@ -4,7 +4,7 @@ import * as marvelSite from './marvelSite';
 
 export type CharactersAction = {
     type: string,
-    characters: JSON
+    characters?: Object
 };
 
 type Dispatch = (

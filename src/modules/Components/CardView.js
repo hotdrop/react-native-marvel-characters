@@ -10,10 +10,6 @@ type Props = {
 };
 
 export default class CardView extends Component<Props> {
-    constructor(props: Props) {
-        super(props);
-    }
-
     render() {
         const { character, viewCharacter } = this.props;
         return (

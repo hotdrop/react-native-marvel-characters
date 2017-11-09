@@ -13,17 +13,21 @@ import styles from './styles/Character';
 
 type Props = {
     character: Object,
-    navigator: Object
+    navigator: Function
+}
+
+type NavigatorEvent = {
+    type: string,
+    id: string
 }
 
 export default class Character extends Component<Props> {
-
     constructor(props: Props) {
         super(props);
         this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
     }
 
-    _onNavigatorEvent(event: Object) {
+    _onNavigatorEvent(event: NavigatorEvent) {
         if(event.type === 'NavBarButtonPress') {
             if(event.id === 'close') {
                 this.props.navigator.dismissModal();

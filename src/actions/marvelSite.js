@@ -38,4 +38,4 @@ export const retrieveComics = (offset: number) => {
 }
 
 const getNumberOfTimestamp = () => Number(new Date());
-const createHash = (ts: number) => md5(ts + MARVEL_PRIVATE_API_KEY + MARVEL_PUBLIC_API_KEY);
+const createHash = (ts: number): number => md5(ts + MARVEL_PRIVATE_API_KEY + MARVEL_PUBLIC_API_KEY);
