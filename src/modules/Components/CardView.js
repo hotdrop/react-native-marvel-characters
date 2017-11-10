@@ -1,11 +1,12 @@
 // @flow
 import React, { Component } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
-
 import styles from './styles/CardView';
 
+import type { Character } from '../../constants/types';
+
 type Props = {
-    character: Object,
+    character: Character,
     viewCharacter: Function
 };
 

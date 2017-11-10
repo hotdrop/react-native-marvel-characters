@@ -2,16 +2,10 @@
 import * as types from './actionTypes';
 import * as marvelSite from './marvelSite';
 
-export type ComicsAction = {
-    type: string,
-    comics?: Object
-};
+import type { AxiosPromise } from 'axios';
+import type { Comic, ComicsResponse } from '../constants/types';
 
-type Dispatch = (
-    action: ComicsAction
-) => any;
-
-const retrieveComicsSuccess = (res: Object) => {
+const retrieveComicsSuccess = (res: ComicsResponse) => {
     return {
         type: types.RETRIEVE_COMICS_SUCCESS,
         comics: res.data.data.results
@@ -19,7 +13,7 @@ const retrieveComicsSuccess = (res: Object) => {
 }
 
 export const retrieveComics = (offset: number) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch): AxiosPromise<any> => {
         return marvelSite.retrieveComics(offset)
                 .then(res => {
                     dispatch(retrieveComicsSuccess(res));

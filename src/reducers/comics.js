@@ -1,16 +1,10 @@
 // @flow
+
 import * as types from '../actions/actionTypes';
-import type { ComicsAction } from '../actions/comics';
+import initialState from './initialState';
+import type { ComicAction as Action, State } from '../constants/types';
 
-type ComicsState = {
-    items: Object
-};
-
-const initialState: ComicsState = {
-    items: {}
-};
-
-export default function comics(state: ComicsState = initialState, action: ComicsAction) {
+export default function comics(state: State = initialState, action: Action) {
     switch (action.type) {
         case types.RETRIEVE_COMICS_SUCCESS:
             return {

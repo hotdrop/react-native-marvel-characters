@@ -1,14 +1,32 @@
 // @flow
 
-export type Action = {
+export type CharacterAction = {
     type: string,
     characters?: Array<Character>
-} | {
+};
+export type ComicAction = {
     type: string,
-    comics?: Array<Comics>
-}
+    comics?: Array<Comic>
+};
+export type State = {
+    characters: Array<Character>,
+    comics: Array<Comic>    
+};
 
 export type CharactersResponse = {
+    data: {
+        // ここから下がMarvel APIのCharactersのJSON構造
+        data: {
+            offset: number,
+            limit: number,
+            total: number,
+            count: number,
+            results: Array<Character>
+        }
+    }
+};
+
+export type ComicsResponse = {
     data: {
         // ここから下がMarvel APIのCharactersのJSON構造
         data: {
@@ -46,16 +64,16 @@ export type Character = {
         items: Array<ItemEvent>
     },
     urls: Array<Url>
-}
-type ItemComic = { resourceURI: string, name: string } 
-type ItemSeries = { resourceURI: string, name: string }
-type ItemStory = { resourceURI: string, name: string }
-type ItemEvent = { resourceURI: string, name: string }
+};
+type ItemComic = { resourceURI: string, name: string };
+type ItemSeries = { resourceURI: string, name: string };
+type ItemStory = { resourceURI: string, name: string };
+type ItemEvent = { resourceURI: string, name: string };
 type Url = { type: string, url: string}
 
-export type Comics = {
+export type Comic = {
     name: string
-}
+};
 
 // React Native Navigatorは仕方ないから自分で定義する
 export type RNNavigator = {
@@ -70,9 +88,9 @@ export type RNNavigator = {
     switchToTab: ({
       tabIndex: number,
     }) => void
-}
+};
 export type RNNavigatorEvent = {
     type: string,
     id: string,
     [string]: string,
-}
+};

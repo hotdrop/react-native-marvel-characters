@@ -2,16 +2,10 @@
 import * as types from './actionTypes';
 import * as marvelSite from './marvelSite';
 
-export type CharactersAction = {
-    type: string,
-    characters?: Object
-};
+import type { AxiosPromise } from 'axios';
+import type { Character, CharactersResponse } from '../constants/types';
 
-type Dispatch = (
-    action: CharactersAction
-) => any;
-
-const retrieveCharactersSuccess = (res: Object) => {
+const retrieveCharactersSuccess = (res: CharactersResponse) => {
     return {
         type: types.RETRIEVE_CHARACTERS_SUCCESS,
         characters: res.data.data.results
@@ -19,7 +13,7 @@ const retrieveCharactersSuccess = (res: Object) => {
 }
 
 export const retrieveCharacters = (offset: number) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch): AxiosPromise<any> => {
         return marvelSite.retrieveCharacters(offset)
                 .then(res => {
                     dispatch(retrieveCharactersSuccess(res));

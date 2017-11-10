@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, ListView } from 'react-native';
@@ -8,7 +9,14 @@ import { connect } from 'react-redux';
 
 import * as actions from '../actions/characters';
 
-export default class Comics extends Component {
+type Props = {
+
+}
+type State = {
+    
+}
+
+export default class Comics extends Component<Props, State> {
     render() {
         return (
             <View>

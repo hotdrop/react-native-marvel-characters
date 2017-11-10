@@ -1,3 +1,5 @@
+// @flow
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const icons = {
