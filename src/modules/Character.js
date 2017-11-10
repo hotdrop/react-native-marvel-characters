@@ -1,24 +1,24 @@
 // @flow
 import React, { Component } from 'react';
-import {
-    ScrollView,
-    Image,
-    Text,
+import { 
+    ScrollView, 
+    Image, 
+    Text, 
     View
 } from 'react-native';
-
 import LinearGradient from 'react-native-linear-gradient';
 import Hyperlink from 'react-native-hyperlink';
 import styles from './styles/Character';
 
-type Props = {
-    character: Object,
-    navigator: Function
-}
+import type { 
+    Character as TypeCharacter, 
+    RNNavigator, 
+    RNNavigatorEvent 
+} from '../constants/types';
 
-type NavigatorEvent = {
-    type: string,
-    id: string
+type Props = {
+    character: TypeCharacter,
+    navigator: RNNavigator
 }
 
 export default class Character extends Component<Props> {
@@ -27,7 +27,7 @@ export default class Character extends Component<Props> {
         this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
     }
 
-    _onNavigatorEvent(event: NavigatorEvent) {
+    _onNavigatorEvent(event: RNNavigatorEvent) {
         if(event.type === 'NavBarButtonPress') {
             if(event.id === 'close') {
                 this.props.navigator.dismissModal();
@@ -100,7 +100,7 @@ export default class Character extends Component<Props> {
                                 <Hyperlink
                                     key={item.type}
                                     linkStyle={styles.urlLink}
-                                    linkText={ url => url === item.url ? item.type : url }>
+                                    linkText={url => url === item.url ? item.type : url}>
                                     <Text style={styles.urlLinkText}> 
                                         link to {item.url}
                                     </Text>
