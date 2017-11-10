@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -13,28 +15,27 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions/characters';
-
 import { iconsMap } from '../constants/icons';
 import styles from './styles/Characters';
-import CardView from './Components/CardView';
+import CardView from './Components/CharacterCardView';
 
-// このObjectだらけの型定義なんて意味ないのでどうすればいいか調査する
+import type { Character, RNNavigator, RNNavigatorEvent } from '../constants/types';
+
 type Props = {
   actions: Object,
-  characters: Object,
-  navigator: Function
+  characters: Array<Character>,
+  navigator: RNNavigator
 }
 
 type State = {
-  listData: Array<Object>,
-  characters: Array<Object>,
-  dataSource: Object,
+  listData: Array<Character>,
+  characters: Array<Character>,
+  dataSource: ListView.DataSource,
   loading: boolean,
   refreshing: boolean,
   offset: number
 }
 
-// これ至る所にあるのでまとめたほうがいい。意味的には同じなので集約するのは問題ない
 type NavigatorEvent = {
   type: string,
   id: string
@@ -48,7 +49,9 @@ class Characters extends Component<Props, State> {
     this.state = {
       listData: [],
       characters: [],
-      dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => JSON.stringify(r1) !== JSON.stringify(r2) }),
+      dataSource: new ListView.DataSource({ rowHasChanged: (r1: Object, r2: Object) => 
+        JSON.stringify(r1) !== JSON.stringify(r2) 
+      }),
       loading: true,
       refreshing: false,
       offset: 0
@@ -76,8 +79,7 @@ class Characters extends Component<Props, State> {
     });
   }
 
-  // charaterはObjectにしているが、ちゃんとCharacterで定義する。
-  _getUpdateDataSource(characters: Object) {
+  _getUpdateDataSource(characters: Array<Character>) {
     this.state.listData = this.state.listData.concat(characters);  
     return this.state.dataSource.cloneWithRows(this.state.listData);
   }
@@ -96,7 +98,7 @@ class Characters extends Component<Props, State> {
     this._retrieveCharacters('isRefreshed');
   }
 
-  _onNavigatorEvent(event: NavigatorEvent) {
+  _onNavigatorEvent(event: RNNavigatorEvent) {
 		if (event.type === 'NavBarButtonPress') {
 			if (event.id === 'close') {
 				this.props.navigator.dismissModal();
@@ -104,7 +106,7 @@ class Characters extends Component<Props, State> {
 		}
   }
   
-  _viewCharacter(character) {
+  _viewCharacter(character: Character) {
     this.props.navigator.showModal({
       screen: 'myapp.Character',
       passProps: {
@@ -148,16 +150,13 @@ class Characters extends Component<Props, State> {
   }
 }
 
-// このstateはStoreで保持しているstateでReducerの実行結果となる。
-// 型定義はStoreで持つべき？型定義.jsを作るべき？
 const mapStateToProps = (state) => {
   return {
     characters: state.characters.characters
   };
 }
 
-// このDispatchはActionを兼ねたもので、ActionのDispatchと同等。
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
       actions: bindActionCreators(actions, dispatch)
   };

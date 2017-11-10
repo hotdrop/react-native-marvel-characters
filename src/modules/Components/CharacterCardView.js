@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
-import styles from './styles/CardView';
+import styles from './styles/CharacterCardView';
 
 import type { Character } from '../../constants/types';
 
