@@ -2,7 +2,7 @@
 
 import { Platform, StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
     listView: {
         backgroundColor: 'black',
         ...Platform.select({
@@ -18,5 +18,3 @@ const styles = StyleSheet.create({
         paddingTop: 100
     }
 });
-
-export default styles;

@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import configureStore from './store/configureStore';
 import registerScreens from './screens';
-import { iconsMap, loadIcons } from './constants/icons';
+import { icons, loadIcons } from './constants/icons';
 
 const store = configureStore();
 
@@ -27,16 +27,16 @@ export default class App extends React.Component {
                     label: 'Characters',
                     screen: 'myapp.Characters',
                     title: 'Mervel Characters',
-                    icon: iconsMap['ios-people-outline'],
-                    selectedIcon: iconsMap['ios-people'],
+                    icon: icons['ios-people-outline'],
+                    selectedIcon: icons['ios-people'],
                     navigatorStyle
                 },
                 {
                     label: 'Comics',
                     screen: 'myapp.Comics',
                     title: 'Mervel Comics',
-                    icon: iconsMap['ios-book-outline'],
-                    selectedIcon: iconsMap['ios-book'],
+                    icon: icons['ios-book-outline'],
+                    selectedIcon: icons['ios-book'],
                     navigatorStyle
                 }
             ],

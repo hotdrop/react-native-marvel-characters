@@ -2,7 +2,7 @@
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const icons = {
+const iconsDefine = {
     'ios-people': [30],
     'ios-people-outline': [30],
     'ios-book': [30],
@@ -10,12 +10,16 @@ const icons = {
     'md-arrow-back': [20]
 };
 
-export const iconsMap = {};
+export const icons: Object = {};
 export const loadIcons = new Promise((resolve, reject) => {
     Promise.all(
-        Object.keys(icons).map(name => Ionicons.getImageSource(name, icons[name][0]))
+        Object.keys(iconsDefine).map(name => 
+            Ionicons.getImageSource(name, iconsDefine[name][0])
+        )
     ).then(sources => {
-        Object.keys(icons).forEach((name, index) => (iconsMap[name] = sources[index]));
+        Object.keys(iconsDefine).forEach((name, index) => 
+            icons[name] = sources[index]
+        );
         resolve(true);
     });
 });

@@ -2,7 +2,7 @@
 
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
     container: {
         backgroundColor: 'black'
     },
@@ -107,5 +107,3 @@ const styles = StyleSheet.create({
         paddingLeft: 10
     }
 });
-
-export default styles;

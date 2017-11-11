@@ -46,8 +46,8 @@ react-native run-android
 # Screenshots
 ## iOS
 
-<img src="screenshot/ios_characters.png" width="175" /><img src="screenshot/ios_character_detail.png" width="175" />  
+<img src="screenshot/ios_characters.png" width="200" /><img src="screenshot/ios_character_detail.png" width="200" />  
 
 ## Android
 
-<img src="screenshot/android_characters.png" width="175" /><img src="screenshot/android_character_detail.png" width="175" />  
+<img src="screenshot/android_characters.png" width="200" /><img src="screenshot/android_character_detail.png" width="200" />  
