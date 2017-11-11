@@ -3,6 +3,7 @@ React Nativeを勉強するために作成したアプリです。
 Marvel APIを使用しています。
 
 # Preparation
+使用する前に必要な準備です。
 
 ## 1. Getting Started with Marvel API
 `DEVELOPER PORTAL`(developer.marvel.com)でユーザー登録をしてください。  
@@ -43,4 +44,10 @@ react-native run-android
 ```
 
 # スクリーンショット
-<img src="screenshot/top_screen_ios.png" width="175" />  
+## iOS
+<img src="screenshot/ios_characters.png" width="175" />
+<img src="screenshot/ios_character_detail.png" width="175" />  
+
+## Android
+<img src="screenshot/android_characters.png" width="175" />
+<img src="screenshot/android_character_detail.png" width="175" />  
