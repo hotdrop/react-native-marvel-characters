@@ -18,7 +18,7 @@ import { icons } from '../constants/icons';
 import styles from './styles/Characters';
 import CardView from './Components/CharacterCardView';
 
-import type { Character, RNNavigator, RNNavigatorEvent } from '../constants/types';
+import type { Character, RNNavigator } from '../constants/types';
 
 type Props = {
     actions: Object,
@@ -49,7 +49,6 @@ class Characters extends Component<Props, State> {
             refreshing: false,
             offset: 0
         };
-        this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
     }
 
     componentWillMount() {
@@ -89,14 +88,6 @@ class Characters extends Component<Props, State> {
         });
     }
 
-    _onNavigatorEvent(event: RNNavigatorEvent) {
-        if(event.type === 'NavBarButtonPress') {
-            if(event.id === 'close') {
-                this.props.navigator.dismissModal();
-            }
-        }
-    }
-    
     _viewCharacter(character: Character) {
         this.props.navigator.showModal({
             screen: 'myapp.Character',

@@ -53,8 +53,13 @@ class Comics extends Component<Props, State> {
         this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
     }
 
-    componentWillMount() {
-        this._retrieveComics();
+    _onNavigatorEvent(event: RNNavigatorEvent) {
+        if(event.id === 'bottomTabSelected') {
+            const comics = this.state.listData;
+            if(comics.length <= 0) {
+                this._retrieveComics();
+            }
+        }
     }
 
     async _loadMoreContentAsync() {
@@ -88,14 +93,6 @@ class Comics extends Component<Props, State> {
             listData: concatReceiveComics,
             dataSource: this.state.dataSource.cloneWithRows(concatReceiveComics)
         });
-    }
-    
-    _onNavigatorEvent(event: RNNavigatorEvent) {
-        if(event.type === 'NavBarButtonPress') {
-            if(event.id === 'close') {
-				this.props.navigator.dismissModal();
-			}
-        }
     }
 
     _viewComic(comic: Comic) {

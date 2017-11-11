@@ -9,7 +9,7 @@ export default function comics(state: State = initialState, action: Action) {
         case types.RETRIEVE_COMICS_SUCCESS:
             return {
                 ...state,
-                items: action.comics
+                comics: action.comics
             };
         default:
             return state;
