@@ -72,8 +72,22 @@ type ItemEvent = { resourceURI: string, name: string };
 type Url = { type: string, url: string}
 
 export type Comic = {
-    name: string
+    id: number,
+    title: string,
+    description: string,
+    prices: {
+        type: string,
+        price: number
+    },
+    thumbnail: {
+        path: string,
+        extension: string
+    },
+    creators: {
+        items: Array<Creator>
+    }
 };
+type Creator = { resoureURI: string, name: string, role: string };
 
 // React Native Navigatorは仕方ないから自分で定義する
 export type RNNavigator = {
