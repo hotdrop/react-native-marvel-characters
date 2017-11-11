@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import {
   ActivityIndicator,
   Text,
@@ -15,7 +14,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions/characters';
-import { iconsMap } from '../constants/icons';
+import { icons } from '../constants/icons';
 import styles from './styles/Characters';
 import CardView from './Components/CharacterCardView';
 
@@ -34,11 +33,6 @@ type State = {
   loading: boolean,
   refreshing: boolean,
   offset: number
-}
-
-type NavigatorEvent = {
-  type: string,
-  id: string
 }
 
 class Characters extends Component<Props, State> {
@@ -60,33 +54,11 @@ class Characters extends Component<Props, State> {
   }
 
   componentWillMount() {
-    this._retrieveCharacters('');
-  }
-
-  _retrieveCharacters(isRefreshed: string) {
-    this.props.actions.retrieveCharacters(this.state.offset)
-      .then(() => {
-        this.setState({ loading: false });
-      }).catch(err => {
-        console.log('Characters-retrieveCharacters Error:', err);
-      });
-    if (isRefreshed && this.setState({ refreshing: false }));
-  }
-
-  componentWillReceiveProps(props: Props) {
-    this.setState({ 
-      dataSource: this._getUpdateDataSource(props.characters)
-    });
-  }
-
-  _getUpdateDataSource(characters: Array<Character>) {
-    this.state.listData = this.state.listData.concat(characters);  
-    return this.state.dataSource.cloneWithRows(this.state.listData);
+    this._retrieveCharacters();
   }
 
   async _loadMoreContentAsync() {
-    this.state.offset += 30;
-    this._retrieveCharacters('');
+    this._retrieveCharacters();
   }
 
   _onRefresh() {
@@ -95,12 +67,32 @@ class Characters extends Component<Props, State> {
       offset: 0,
       refreshing: true
     });
-    this._retrieveCharacters('isRefreshed');
+    this._retrieveCharacters(true);
+  }
+
+  _retrieveCharacters(isRefreshed: boolean = false) {
+    this.props.actions.retrieveCharacters(this.state.offset)
+        .then(() => { this.setState({ loading: false }); })
+        .catch(err => { console.log('retrieveCharacters Error:', err); });
+
+    const nextOffset = this.state.offset + 30;
+    this.setState({ offset: nextOffset });
+    if(isRefreshed && this.setState({ refreshing: false }));
+  }
+
+  componentWillReceiveProps(props: Props) {
+    const characters = this.state.listData;
+    const concatReceiveCharacters = characters.concat(props.characters);
+    
+    this.setState({ 
+      listData: concatReceiveCharacters,
+      dataSource: this.state.dataSource.cloneWithRows(concatReceiveCharacters),
+    });
   }
 
   _onNavigatorEvent(event: RNNavigatorEvent) {
-		if (event.type === 'NavBarButtonPress') {
-			if (event.id === 'close') {
+		if(event.type === 'NavBarButtonPress') {
+			if(event.id === 'close') {
 				this.props.navigator.dismissModal();
 			}
 		}
@@ -117,7 +109,7 @@ class Characters extends Component<Props, State> {
         leftButtons: [
           {
             id: 'close',
-            icon: iconsMap['md-arrow-back']
+            icon: icons['md-arrow-back']
           }
         ]
       }
