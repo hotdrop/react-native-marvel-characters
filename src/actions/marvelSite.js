@@ -11,7 +11,7 @@ import {
 export const retrieveCharacters = (offset: number) => {
     const ts = getNumberOfTimestamp();
     const hash = createHash(ts);
-    return axios.get(`${MARVEL_URL}/characters`, {
+    return axios.get(`${MARVEL_URL}/v1/public/characters`, {
         params: {
             ts,
             hash,
@@ -26,7 +26,7 @@ export const retrieveCharacters = (offset: number) => {
 export const retrieveComics = (offset: number) => {
     const ts = getNumberOfTimestamp();
     const hash = createHash(ts);
-    return axios.get(`${MARVEL_URL}/comics`, {
+    return axios.get(`${MARVEL_URL}/v1/public/comics`, {
         params: {
             ts,
             hash,
