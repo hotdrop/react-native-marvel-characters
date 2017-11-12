@@ -1,4 +1,5 @@
 // @flow
+
 import React, { Component } from 'react';
 import { 
     ScrollView, 
@@ -72,8 +73,15 @@ export default class Comic extends Component<Props> {
                             </Text>
                         ))}
                     </View>
-                    {/* images umm.. */}
-                    {/* characters todo */}
+                    <View style={styles.labelColumn}>
+                        <Text style={styles.label}>Characters</Text>
+                        <Text style={styles.available}>[available: {comic.characters.available}]</Text>
+                        {comic.characters.items.map(character => (
+                            <Text key={character.resourceURI} style={styles.item}>
+                                ・{character.name} 
+                            </Text>
+                        ))}
+                    </View>
                 </View>
             </ScrollView>
         );

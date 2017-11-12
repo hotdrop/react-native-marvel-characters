@@ -15,7 +15,6 @@ export type State = {
 
 export type CharactersResponse = {
     data: {
-        // ここから下がMarvel APIのCharactersのJSON構造
         data: {
             offset: number,
             limit: number,
@@ -28,7 +27,6 @@ export type CharactersResponse = {
 
 export type ComicsResponse = {
     data: {
-        // ここから下がMarvel APIのCharactersのJSON構造
         data: {
             offset: number,
             limit: number,
@@ -97,7 +95,6 @@ type Price = { type: string, price: number };
 type Image = { path: string, extension: string };
 type ItemCharacter = { resourceURI: string, name: string };
 
-// React Native Navigatorは仕方ないから自分で定義する
 export type RNNavigator = {
     dismissModal: () => void,
     pop: () => void,

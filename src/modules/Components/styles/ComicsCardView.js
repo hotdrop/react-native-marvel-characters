@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
         height: 180,
-        width: 160,
+        width: 175,
         backgroundColor: '#FEF099',
         flexDirection: 'column',
         marginRight: 5,
@@ -15,7 +15,7 @@ export default StyleSheet.create({
     },
     image: {
         height:150,
-        width: 160,
+        width: 175,
         borderTopLeftRadius: 3,
         borderBottomLeftRadius: 3
     },
