@@ -13,35 +13,36 @@ import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as actions from '../actions/characters';
+import * as actions from '../actions/comics';
 import { icons } from '../constants/icons';
-import styles from './styles/Characters';
-import CardView from './Components/CharacterCardView';
+import styles from './styles/Comics';
+import CardView from './Components/ComicCardView';
 
-import type { Character, RNNavigator } from '../constants/types';
+import type { Comic, RNNavigator, RNNavigatorEvent } from '../constants/types';
 
 type Props = {
-    actions: Object,
-    characters: Array<Character>,
-    navigator: RNNavigator
-}
+  actions: Object,
+  comics: Array<Comic>,
+  navigator: RNNavigator
+};
 
 type State = {
-    listData: Array<Character>,
-    characters: Array<Character>,
-     dataSource: ListView.DataSource,
-     loading: boolean,
-     refreshing: boolean,
-     offset: number
-}
+  listData: Array<Comic>,
+  comics: Array<Comic>,
+  dataSource: ListView.DataSource,
+  loading: boolean,
+  refreshing: boolean,
+  offset: number
+};
 
-class Characters extends Component<Props, State> {
+class Comics extends Component<Props, State> {
+    
     constructor(props: Props) {
         super(props);
 
         this.state = {
             listData: [],
-            characters: [],
+            comics: [],
             dataSource: new ListView.DataSource({ rowHasChanged: (r1: Object, r2: Object) => 
                 JSON.stringify(r1) !== JSON.stringify(r2) 
             }),
@@ -49,14 +50,20 @@ class Characters extends Component<Props, State> {
             refreshing: false,
             offset: 0
         };
+        this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
     }
 
-    componentWillMount() {
-        this._retrieveCharacters();
+    _onNavigatorEvent(event: RNNavigatorEvent) {
+        if(event.id === 'bottomTabSelected') {
+            const comics = this.state.listData;
+            if(comics.length <= 0) {
+                this._retrieveComics();
+            }
+        }
     }
 
     async _loadMoreContentAsync() {
-        this._retrieveCharacters();
+        this._retrieveComics();
     }
 
     _onRefresh() {
@@ -65,34 +72,34 @@ class Characters extends Component<Props, State> {
             offset: 0,
             refreshing: true
         });
-        this._retrieveCharacters(true);
+        this._retrieveComics(true);
     }
 
-    _retrieveCharacters(isRefreshed: boolean = false) {
-        this.props.actions.retrieveCharacters(this.state.offset)
+    _retrieveComics(isRefreshed: boolean = false) {
+        this.props.actions.retrieveComics(this.state.offset)
             .then(() => { this.setState({ loading: false }); })
-            .catch(err => { console.log('retrieveCharacters Error:', err); });
-
+            .catch(err => { console.log('Comics-retrieveComics Error:', err); });
+        
         const nextOffset = this.state.offset + 30;
         this.setState({ offset: nextOffset });
         if(isRefreshed && this.setState({ refreshing: false }));
     }
 
     componentWillReceiveProps(props: Props) {
-        const characters = this.state.listData;
-        const concatReceiveCharacters = characters.concat(props.characters);
+        const comics = this.state.listData;
+        const concatReceiveComics = comics.concat(props.comics);
         
-        this.setState({ 
-            listData: concatReceiveCharacters,
-            dataSource: this.state.dataSource.cloneWithRows(concatReceiveCharacters),
+        this.setState({
+            listData: concatReceiveComics,
+            dataSource: this.state.dataSource.cloneWithRows(concatReceiveComics)
         });
     }
 
-    _viewCharacter(character: Character) {
+    _viewComic(comic: Comic) {
         this.props.navigator.showModal({
-            screen: 'myapp.Character',
+            screen: 'myapp.Comic',
             passProps: {
-                character
+                comic
             },
             backButtonHidden: true,
             navigatorButtons: {
@@ -106,7 +113,7 @@ class Characters extends Component<Props, State> {
 
     render() {
         if(this.state.loading) {
-            return (<View style={styles.loading}><ActivityIndicator /></View>);
+          return (<View style={styles.loading}><ActivityIndicator /></View>);
         }
         return (
             <ListView 
@@ -114,7 +121,7 @@ class Characters extends Component<Props, State> {
                 renderScrollComponent={props => <InfiniteScrollView {...props} />}
                 enableEmptySections
                 dataSource={this.state.dataSource}
-                renderRow={rowData => <CardView character = {rowData} viewCharacter = {this._viewCharacter.bind(this)} /> }
+                renderRow={rowData => <CardView comic = {rowData} viewComic = {this._viewComic.bind(this)} /> }
                 canLoadMore={this.state.offset <= 360}
                 distanceToLoadMore={10}
                 onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
@@ -127,12 +134,13 @@ class Characters extends Component<Props, State> {
                 }
             />
         );
-    }
+      }
 }
 
 const mapStateToProps = (state) => {
     return {
-        characters: state.characters.characters
+        // TODO このcomics.comicsは微妙なのであとで考える
+        comics: state.comics.comics
     };
 }
 
@@ -142,4 +150,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Characters);
+export default connect(mapStateToProps, mapDispatchToProps)(Comics);

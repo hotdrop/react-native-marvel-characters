@@ -54,7 +54,7 @@ buck-out/
 
 # MyResource
 .env
-images
+images/backcover.png
 
 # fonts
 ios/Fonts

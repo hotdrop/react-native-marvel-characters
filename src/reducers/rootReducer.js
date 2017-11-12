@@ -1,8 +1,10 @@
+// @flow
+
 import { combineReducers } from 'redux';
-import items from '../modules/characters.reducers';
+import characters from './characters';
+import comics from './comics';
 
-const rootReducer = combineReducers({
-    items
+export default combineReducers({
+    characters,
+    comics
 });
-
-export default rootReducer;

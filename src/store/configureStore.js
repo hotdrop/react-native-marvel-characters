@@ -1,14 +1,17 @@
 // @flow
+
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers/rootReducer';
 
-import type { Characters } from '../reducers/initialState';
+import type { State } from '../constants/types';
 
-export default (initialState: Characters) => {
+let middleware = [thunk];
+
+export default (initialState: State) => {
     return createStore(
         rootReducer,
         initialState,
-        applyMiddleware(thunk)
+        applyMiddleware(...middleware)
     );
 }

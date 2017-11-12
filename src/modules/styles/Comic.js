@@ -42,7 +42,7 @@ export default StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0)',
 		fontSize: 22,
 		fontWeight: '500',
-		paddingTop: 10
+        paddingTop: 10
     },
     contentArea: {
         flex: 1,
@@ -57,13 +57,18 @@ export default StyleSheet.create({
         flexDirection: 'column',
         paddingTop: 10,
     },
-	label: {
+    label: {
         backgroundColor: '#aaaaaa',
 		color: 'black',
 		fontSize: 16,
         fontWeight: '500'
     },
-	description: {
+    info: {
+        color: 'white',
+        paddingLeft: 10,
+        fontSize: 14,
+    },
+    description: {
         color: 'white',
         paddingTop: 10,
         paddingLeft: 10,
@@ -75,33 +80,9 @@ export default StyleSheet.create({
         paddingTop: 5,
 		fontSize: 14
     },
-    comicsList: {
-        color: '#F85AFE',
-        paddingLeft: 10,
-        fontSize: 14
-    },
-    seriesList: {
+    item: {
         color: '#008088',
         paddingLeft: 10,
         fontSize: 14
-    },
-    storiesList: {
-        color: '#009922',
-        paddingLeft: 10,
-        fontSize: 14
-    },
-    eventsList: {
-        color: '#AF69FD',
-        paddingLeft: 10,
-        fontSize: 14
-    },
-    urlLink: {
-        color: '#2980b9',
-        fontSize: 14
-    },
-    urlLinkText: {
-        color: 'white',
-        fontSize: 14,
-        paddingLeft: 10
     }
-});
+})

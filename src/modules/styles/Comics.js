@@ -14,7 +14,7 @@ export default StyleSheet.create({
         flexWrap: 'wrap'
     },
     loading: {
-        flex: 1, 
+        flex: 1,
         paddingTop: 100
     }
 });
