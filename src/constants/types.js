@@ -75,19 +75,27 @@ export type Comic = {
     id: number,
     title: string,
     description: string,
-    prices: {
-        type: string,
-        price: number
-    },
+    format: string,
+    pageCount: number,
+    prices: Array<Price>,
     thumbnail: {
         path: string,
         extension: string
     },
+    images: Array<Image>,
     creators: {
+        available: number,
         items: Array<Creator>
+    },
+    characters: {
+        available: number,
+        items: Array<ItemCharacter>
     }
 };
-type Creator = { resoureURI: string, name: string, role: string };
+type Creator = { resourceURI: string, name: string, role: string };
+type Price = { type: string, price: number };
+type Image = { path: string, extension: string };
+type ItemCharacter = { resourceURI: string, name: string };
 
 // React Native Navigatorは仕方ないから自分で定義する
 export type RNNavigator = {

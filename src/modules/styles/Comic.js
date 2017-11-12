@@ -42,17 +42,47 @@ export default StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0)',
 		fontSize: 22,
 		fontWeight: '500',
-		paddingTop: 10
+        paddingTop: 10
     },
     contentArea: {
-        flex: 1
-    },
-    contentContainer: {
-		paddingHorizontal: 16,
+        flex: 1,
+        paddingHorizontal: 16,
         paddingBottom: 10
     },
     labelRow: {
         flexDirection: 'row',
         paddingTop: 10,
+    },
+    labelColumn: {
+        flexDirection: 'column',
+        paddingTop: 10,
+    },
+    label: {
+        backgroundColor: '#aaaaaa',
+		color: 'black',
+		fontSize: 16,
+        fontWeight: '500'
+    },
+    info: {
+        color: 'white',
+        paddingLeft: 10,
+        fontSize: 14,
+    },
+    description: {
+        color: 'white',
+        paddingTop: 10,
+        paddingLeft: 10,
+		fontSize: 14
+    },
+    available: {
+        color: 'white',
+        paddingLeft: 10,
+        paddingTop: 5,
+		fontSize: 14
+    },
+    item: {
+        color: '#008088',
+        paddingLeft: 10,
+        fontSize: 14
     }
 })

@@ -45,10 +45,8 @@ export default StyleSheet.create({
 		paddingTop: 10
     },
     contentArea: {
-        flex: 1
-    },
-    contentContainer: {
-		paddingHorizontal: 16,
+        flex: 1,
+        paddingHorizontal: 16,
         paddingBottom: 10
     },
     labelRow: {
