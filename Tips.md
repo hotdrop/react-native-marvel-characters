@@ -47,28 +47,21 @@ react-native-navigationについて
 
 # Gridの実装方法
 ListViewとFlatListについて
-画像も貼りたい
+画像も貼る
 
-# Reduxについて
-簡単にReduxについて解説。特に概要ではなく実装レベルで
+# リストの下まで行ったら次を読み込む方法
+Infinite-scroll-viewについて
 
 # PropTypesとFlowについて
-
-## 型定義はどうすればいい？
-
-## Flow辛い
+PropTypesとFLowTypesについてかく。
+後、型定義辛かったこともかく
 
 # モダンな書き方とは
 Functional Componentにしなかったことととか・・
 
 # stateとsetStateについて
 
-# リストの下まで行ったら次を読み込む方法
-Infinite-scroll-viewについて
-
-# HTTP通信をするには？
-
-# APIをどのレイヤーで叩けばいいか？
+# HTTP通信と叩くレイヤー
 
 # APIなど設定値をどうするか？
 react-native-configの話
