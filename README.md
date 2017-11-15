@@ -3,7 +3,7 @@ React Nativeを勉強するために作成したアプリです。
 Marvel APIを使用しています。
 
 # Preparation
-使用する前に必要な準備です。
+本アプリを使用するための前準備です。
 
 ## 1. Getting Started with Marvel API
 `DEVELOPER PORTAL`(developer.marvel.com)でユーザー登録をしてください。  
