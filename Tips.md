@@ -4,9 +4,9 @@
 # 最初にやったこと
 アプリを作り始める前に、FaceBookのReactNative公式ページにある[チュートリアル The Basics](https://facebook.github.io/react-native/docs/getting-started.html)を一通り学習しました。
 最初の環境構築にかなり時間を費やしましたが、あとはすんなり進められました。
-ReactNativeはES6の構文が使えるため、`Guides`セクションの`JavaScript Environment`でbabelの公式サイトと合わせてES6の構文を確認しました。
-また、どういったComponentがあるのか確認するため、`Components`セクションに書かれたライブラリ群を簡単に流し読みしました。
-`Guides`セクションや`Components`セクションは基本的にアプリ作成を進める中で不明点を調査するため読むことが多かったです。
+ReactNativeはES6の構文が使えるため、`Guides`チャプターの`JavaScript Environment`でbabelの公式サイトと合わせてES6の構文を確認しました。
+また、どういったComponentがあるのか確認するため、`Components`チャプターに書かれたライブラリ群を簡単に流し読みしました。
+`Guides`チャプターや`Components`チャプターは基本的にアプリ作成を進める中で不明点を調査するため読むことが多かったです。
 
 ## 環境構築で引っかかったこと
 `The Basics`の`Getting-started`ではReactNativeの始め方を２通り紹介しています。
@@ -44,7 +44,7 @@ ReactNativeで作成されたSampleアプリが[Github](https://github.com/React
 アプリ作成を進める中で調査したことをまとめます。
 
 # 画面遷移の方法
-公式サイトの[Navigating Between Screens](https://facebook.github.io/react-native/docs/navigation.html)を参考にしました。  
+公式の[Navigating Between Screens](https://facebook.github.io/react-native/docs/navigation.html)を参考にしました。  
 いくつか方法があるようですが、今回はAndroidとiOS両方でほぼ同じコードが使えることと、参考にしたSampleアプリで良さそうなのが`react-native-navigation`を使っていたことから、`react-native-navigation`を使用することにしました。  
 このライブラリはドキュメントがしっかりしているので[使い方](https://wix.github.io/react-native-navigation/#/usage)もほぼドキュメントだけで事足りました。  
 今回のアプリでNavigationを使用した動作は画面下部のメニューアイコン２つと詳細画面の「戻る」アイコンの計３つです。  
@@ -53,9 +53,37 @@ ReactNativeで作成されたSampleアプリが[Github](https://github.com/React
 画面下部のメニューアイコンについて、キャラ一覧の方はアプリ起動時の初期表示画面なので起動したらそのままActionを実行し結果を表示しています。  
 それ以外のメニューであるComicsはタップした時にデータを取得したいので、詳細画面と同様にNavigationのリスナーを登録してタップ時にActionを実行するようにしています。  
 
-# Gridの実装方法
-ListViewとFlatListについて
-画像も貼る
+# 画像アイテムを横に並べて画面の端で折り返す方法
+公式の`The Basics`チャプターにある`Layout with Flexbox`では縦横にアイテムを並べる方法はありますが、私が今回実現したかったFlexboxのように左で折り返してアイテムを表示させ、かつスクロール可能な方法はありません。  
+調査の結果、サードパーティ製のライブラリを使う方法や`FlatList`で実現する方法もありましたが、`ListView`のstyleを`contentContainerStyle`にすることでも実現可能なことがわかりました。  
+どういうことか、それぞれスクリーンショットと該当箇所のコードを載せます。
+
+### ただのstyleで定義した場合のスクリーンショット
+<img src="screenshot/tips_listViewstyle.png" width="200" />  
+
+```javascript
+// characters.jsのrender関数
+render() {
+    return (
+        <ListView 
+            style={styles.listView}
+            // ・・・
+```
+  
+一方、`contentContainerStyle`を使用した場合、以下のようになります。
+
+### contentContainerStyleで定義した場合のスクリーンショット
+<img src="screenshot/tips_contentContainerStyle.png" width="200" />  
+
+```javascript
+// characters.jsのrender関数
+render() {
+    return (
+        <ListView 
+            contentContainerStyle={styles.listView}
+```
+
+今回作成したアプリは縦横幅が全く同一の画像アイテムをGrid形式で並べたかっただけでしたので、この機能だけで事足りました。
 
 # リストの下まで行ったら次を読み込む方法
 Infinite-scroll-viewについて
