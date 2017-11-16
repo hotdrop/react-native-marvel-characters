@@ -42,8 +42,14 @@ ReactNativeで作成されたSampleアプリが[Github](https://github.com/React
 
 # 良く分からなかったことや学習の補足事項
 アプリ作成を進める中で調査したことをまとめます。
+色々あったので以下の分類にまとめます。
+ 1. アプリに関すること
+ 2. ReactやReduxに関すること
 
-# 画面遷移の方法
+# アプリに関すること
+アプリを作成する上での実現手段や使用したOSSライブラリについて書いています。
+
+## 画面遷移の方法
 公式の[Navigating Between Screens](https://facebook.github.io/react-native/docs/navigation.html)を参考にしました。  
 いくつか方法があるようですが、今回はAndroidとiOS両方でほぼ同じコードが使えることと、参考にしたSampleアプリで良さそうなのが`react-native-navigation`を使っていたことから、`react-native-navigation`を使用することにしました。  
 このライブラリはドキュメントがしっかりしているので[使い方](https://wix.github.io/react-native-navigation/#/usage)もほぼドキュメントだけで事足りました。  
@@ -53,7 +59,7 @@ ReactNativeで作成されたSampleアプリが[Github](https://github.com/React
 画面下部のメニューアイコンについて、キャラ一覧の方はアプリ起動時の初期表示画面なので起動したらそのままActionを実行し結果を表示しています。  
 それ以外のメニューであるComicsはタップした時にデータを取得したいので、詳細画面と同様にNavigationのリスナーを登録してタップ時にActionを実行するようにしています。  
 
-# 画像アイテムを横に並べて画面の端で折り返す方法
+## 画像アイテムを横に並べて画面の端で折り返す方法
 公式の`The Basics`チャプターにある`Layout with Flexbox`では縦横にアイテムを並べる方法はありますが、私が今回実現したかったFlexboxのように左で折り返してアイテムを表示させ、かつスクロール可能な方法はありません。  
 調査の結果、サードパーティ製のライブラリを使う方法や`FlatList`で実現する方法もありましたが、`ListView`のstyleを`contentContainerStyle`にすることでも実現可能なことがわかりました。  
 どういうことか、それぞれスクリーンショットと該当箇所のコードを載せます。
@@ -85,22 +91,36 @@ render() {
 
 今回作成したアプリは縦横幅が全く同一の画像アイテムをGrid形式で並べたかっただけでしたので、この機能だけで事足りました。
 
-# リストの下まで行ったら次を読み込む方法
-Infinite-scroll-viewについて
+## リストの下まで行ったら次を読み込む方法
+よくあるSPAのような、例えば  
+「商品リストを一番下までスクロールしたら次の20件の商品アイテムをAPI経由で取得してリストに表示する」  
+ということを実現したかったのですが標準Componentだけではできそうもなかったため調べました。  
+その結果、`react-native-infinite-scroll-view`というOSSライブラリを使うことにしました。  
+これを利用すると・・ *TODO*
 
-# PropTypesとFlowについて
-PropTypesとFLowTypesについてかく。
-後、型定義辛かったこともかく
+## APIなど設定値どうするか？
+*TODO* react-native-configの話
 
-# モダンな書き方とは
-Functional Componentにしなかったことととか・・
+# ReactやReduxに関すること
+アプリを作成している中で、設計や実装をどうしていいか迷った事項について書いています。
 
-# stateとsetStateについて
-this.stateとsetStateはどっちがいいか？
-破壊的変更をするthis.stateはダメ。setStateにすること
+## HTTP通信と叩くレイヤー
+APIを叩くのは`Reducer`、`Action`、`View`のどこが適切なのか不明でした。  
+`Reducer`は`Store`から送られた`Action`を元に発火し、`state`をどのように変化させるか指定する役割を担います。  
+`Reducer`では明確にAPIを叩いたりDateのnowなど実行結果に冪等性がないものを扱ってはならない、とされています。  
+また、`Action`も`Reducer`で対応するアクションを実行するためのただの情報の塊であり、**Type**と**その値(省略可)**を持ちます。  
+この`Action`は`ActionCreator`によって生成されますが、[reduxのActions.md](https://github.com/reactjs/redux/blob/master/docs/basics/Actions.md)を読む限り、`ActionCreator`は副作用があっても良いとされていることが分かりました。  
+そのため、作成したアプリではペイロードとしての`Action`を定義し、`ActionCreator`の中でAPIを叩いています。
 
-# HTTP通信と叩くレイヤー
-Actionの原則はAPIを
+## PropTypesとFlowについて
+*TODO* PropTypesとFLowTypesについて
 
-# APIなど設定値をどうするか？
-react-native-configの話
+## stateとsetStateについて
+いくつかのSampleアプリでは`this.state.XXX = YYY`とstateに直接値を代入していました。  
+しかし、`setState`でもstateを変化させることができるため、じゃあこの違いはなに？という疑問が湧いたため調査しました。  
+結論として以下のような理解になりました。
+1. `this.state`への直接代入は変更を直ちに反映させるが、破壊的変更でありやってはならない。`this.state`は参照にだけ使用する。
+2. `setState`は`state`の変化を依頼するもので、`render()`など特定のタイミングで反映される。`Component`の`state`を変化させる場合は`setState`でのみ行う。
+
+これは[React.jsのstateの章](https://reactjs.org/docs/react-component.html)(一番下の部分)で記載されていたものを参考にしました。  
+また、このリンク先のstateの章にもありますが、`setState`は反映されるタイミングがあるためComponentのライフサイクルを理解しないと結構ハマります。  
