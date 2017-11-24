@@ -6,9 +6,8 @@ export default StyleSheet.create({
     listView: {
         backgroundColor: 'black',
         ...Platform.select({
-            ios: {
-                paddingTop: 70
-            }
+            android: { paddingTop: 50 },
+            ios: { paddingTop: 70 }
         }),
         flexDirection: 'row',
         flexWrap: 'wrap'

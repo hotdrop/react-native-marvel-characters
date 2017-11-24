@@ -1,10 +1,13 @@
 // @flow
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export default StyleSheet.create({ 
     container: {
         height:180,
-        width: 115,
+        ...Platform.select({
+            android: { width: 110 },
+            ios: { width: 115 }
+        }),
         backgroundColor: 'white',
         flexDirection: 'column',
         marginRight: 5,
@@ -14,7 +17,10 @@ export default StyleSheet.create({
     },
     image: {
         height: 150,
-        width: 115,
+        ...Platform.select({
+            android: { width: 110 },
+            ios: { width: 115 }
+        }),
         borderTopLeftRadius: 3,
         borderBottomLeftRadius: 3
     },
